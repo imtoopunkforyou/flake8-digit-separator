@@ -31,10 +31,10 @@ jobs:
           poetry install --only lint
       
       - name: Isort rules
-        run: poetry run isort --check ./curlifier/ ./tests/
+        run: poetry run isort --check ./flake8_digit_separator/ ./tests/
 
       - name: Flake8 rules
-        run: poetry run flake8 ./curlifier/ ./tests/
+        run: poetry run flake8 ./flake8_digit_separator/ ./tests/
 
       - name: Mypy rules
-        run: poetry run mypy ./curlifier/
+        run: poetry run mypy ./flake8_digit_separator/

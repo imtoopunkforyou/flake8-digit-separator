@@ -33,7 +33,7 @@ jobs:
           poetry install --without lint
 
       - name: Create coverage file
-        run: poetry run pytest ./tests/ --cov=curlifier
+        run: poetry run pytest ./tests/ --cov=flake8_digit_separator
 
       - name: Create Badge
         run: |

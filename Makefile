@@ -5,17 +5,19 @@ make:
 
 # === Dev ===
 lint:
-	poetry run flake8 ./src ./tests \
-	&& poetry run mypy ./src --no-pretty \
+	poetry run flake8 ./flake8_digit_separator ./tests \
+	&& poetry run mypy ./flake8_digit_separator --no-pretty \
 	&& poetry run nitpick fix
 pre-commit:
-	poetry run isort ./src ./tests \
+	poetry run isort ./flake8_digit_separator ./tests \
 	&& make lint \
 	&& make test
 test-collect:
 	poetry run pytest ./tests/ --collect-only
 test:
 	poetry run pytest ./tests/ 
+py:
+	poetry run python
 
 # === Aliases ===
 pc: pre-commit
