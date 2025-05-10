@@ -38,7 +38,6 @@ coverage-badge = "^1.1.2"
 
 [tool.poetry.group.dev.dependencies]
 nitpick = "^0.35.0"
-ipython = "6.5"
 
 [tool.nitpick]
 style = "https://raw.githubusercontent.com/imtoopunkforyou/itpfy-style/refs/heads/main/py/imtoopunkforyou.toml"
