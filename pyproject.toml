@@ -1,0 +1,45 @@
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "flake8-digit-separator"
+version = "0.0.1"
+description = "PEP 515 – Underscores in Numeric Literals"
+authors = [
+    "Timur Valiev <cptchunk@yandex.ru>",
+]
+license = "MIT"
+readme = "README.md"
+
+homepage = "https://github.com/imtoopunkforyou/flake8-digit-separator"
+
+keywords = [
+  "flake8",
+  "TODO",
+]
+
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[tool.poetry.group.lint.dependencies]
+wemake-python-styleguide = "^1.1.0"
+mypy = "^1.15.0"
+isort = "^6.0.1"
+darglint = "^1.8.1"
+
+
+[tool.poetry.group.tests.dependencies]
+pytest = "^8.3.5"
+pytest-cov = "^6.1.1"
+coverage-badge = "^1.1.2"
+
+[tool.poetry.group.dev.dependencies]
+nitpick = "^0.35.0"
+ipython = "6.5"
+
+[tool.nitpick]
+style = "https://raw.githubusercontent.com/imtoopunkforyou/itpfy-style/refs/heads/main/py/imtoopunkforyou.toml"
+
