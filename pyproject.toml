@@ -38,12 +38,5 @@ pytest = "^8.3.5"
 pytest-cov = "^6.1.1"
 coverage-badge = "^1.1.2"
 
-[tool.poetry.group.dev.dependencies]
-nitpick = "^0.35.0"
-
 [tool.poetry.plugins."flake8.extension"]
 FDS = "flake8_digit_separator.checker:Checker"
-
-[tool.nitpick]
-style = "https://raw.githubusercontent.com/imtoopunkforyou/itpfy-style/refs/heads/main/py/imtoopunkforyou.toml"
-
