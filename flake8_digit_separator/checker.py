@@ -15,4 +15,4 @@ class Checker:
         for token in self.file_tokens:
             if token.type == tokenize.NUMBER:
                 # (line, column, msg, type)
-                yield token.start[0], token.start[1], 'FDS100 SOME TEXT', type(self)
+                yield token.start[0], token.start[1], f'FDS100 TOKEN: {token.string}', type(self)
