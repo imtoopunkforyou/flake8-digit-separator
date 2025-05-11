@@ -7,7 +7,7 @@ from flake8_digit_separator import version
 class Checker:
     name = version.NAME
     version = version.VERSION
-    
+
     def __init__(self, tree: ast.AST, file_tokens):
         self.file_tokens = file_tokens
 
