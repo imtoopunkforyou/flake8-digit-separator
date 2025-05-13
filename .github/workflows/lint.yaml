@@ -10,9 +10,9 @@ jobs:
   lint:
     runs-on: ubuntu-latest
 
-    steps:
-      - name: stub
-        run: exit 0
+    steps:  # delete this
+      - name: stub  # delete this
+        run: exit 0  # delete this
       # - name: Checkout code
       #   uses: actions/checkout@v4
 
