@@ -36,6 +36,13 @@ class ComplexClassifier(NumberClassifier):
             flags=re.IGNORECASE,
         ))
 
+    def validate(self):
+        ...
+
+    @property
+    def error_message(self):
+        ...
+
 
 class HexClassifier(NumberClassifier):
     def __init__(self, token):
@@ -55,6 +62,13 @@ class HexClassifier(NumberClassifier):
 
     def check(self) -> bool:
         return bool(re.fullmatch(self.re_expression, self.token))
+
+    def validate(self):
+        ...
+
+    @property
+    def error_message(self):
+        ...
 
 
 class BinaryClassifier(NumberClassifier):
@@ -76,6 +90,13 @@ class BinaryClassifier(NumberClassifier):
     def check(self) -> bool:
         return bool(re.fullmatch(self.re_expression, self.token))
 
+    def validate(self):
+        ...
+
+    @property
+    def error_message(self):
+        ...
+
 
 class OctalClassifier(NumberClassifier):
     def __init__(self, token):
@@ -96,6 +117,13 @@ class OctalClassifier(NumberClassifier):
     def check(self) -> bool:
         return bool(re.fullmatch(self.re_expression, self.token))
 
+    def validate(self):
+        ...
+
+    @property
+    def error_message(self):
+        ...
+
 
 class ScientificClassifier(NumberClassifier):
     def __init__(self, token):
@@ -112,6 +140,13 @@ class ScientificClassifier(NumberClassifier):
     def check(self) -> bool:
         return 'e' in self.token
 
+    def validate(self):
+        ...
+
+    @property
+    def error_message(self):
+        ...
+
 
 class DecimalClassifier(NumberClassifier):
     def __init__(self, token):
@@ -127,6 +162,13 @@ class DecimalClassifier(NumberClassifier):
 
     def check(self) -> bool:
         return '.' in self.token
+
+    def validate(self):
+        return ...
+
+    @property
+    def error_message(self):
+        ...
 
 
 class IntClassifier(NumberClassifier):
@@ -147,3 +189,18 @@ class IntClassifier(NumberClassifier):
 
     def check(self) -> bool:
         return bool(re.fullmatch(self.re_expression, self.token))
+
+    def validate(self) -> bool | str:
+        token = self.token.lstrip('+-')
+
+        if len(token) > 4 and '_' not in token:
+            return False
+
+        return True
+
+    @property
+    def error_message(self):
+        return 'FDS: Hello World!!!!!!!!!(PEP515)'
+
+
+a = 10000

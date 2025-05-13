@@ -21,6 +21,14 @@ class NumberClassifier(ABC):
         ...
         raise NotImplementedError
 
+    @abstractmethod
+    def validate(self):
+        ...
+
+    @property
+    @abstractmethod
+    def error_message(self):
+        ...
 
 class NumberClassifiersFactory(ABC):
     @property
@@ -31,3 +39,4 @@ class NumberClassifiersFactory(ABC):
     @abstractmethod
     def create_ordered_classifiers(self) -> tuple[NumberClassifier, ...]:
         ...
+
