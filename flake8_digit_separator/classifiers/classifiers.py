@@ -15,17 +15,23 @@ class ComplexClassifier(NumberClassifier):
     def type_name(self):
         return 'complex'
 
-    def check(self) -> bool:
-        return bool(re.fullmatch(
+    @property
+    def re_expression(self):
+        return (
             r'^[+-]?('
             r'('
-            r'\d[\d_]*(\.\d[\d_]*)?([eE][+-]?\d[\d_]*)?|'   # Десятичные
-            r'\.\d[\d_]*([eE][+-]?\d[\d_]*)?|'              # Числа с точкой в начале
-            r'0[xX][\da-fA-F_]+(\.[\da-fA-F_]*)?|'          # HEX с точкой
-            r'0[bB][01_]+|'                                 # BIN
-            r'0[oO][0-7_]+'                                 # OCT
+            r'\d[\d_]*(\.\d[\d_]*)?([eE][+-]?\d[\d_]*)?|'    # Decimal numbers
+            r'\.\d[\d_]*([eE][+-]?\d[\d_]*)?|'               # Numbers starting with a point
+            r'0[xX][\da-fA-F_]+(\.[\da-fA-F_]*)?|'           # HEX with decimal point
+            r'0[bB][01_]+|'                                  # Binary numbers
+            r'0[oO][0-7_]+'                                  # Octal numbers
             r')'
-            r')[jJ]$',
+            r')[jJ]$'
+        )
+
+    def check(self) -> bool:
+        return bool(re.fullmatch(
+            self.re_expression,
             self.token,
             flags=re.IGNORECASE,
         ))
@@ -43,8 +49,12 @@ class HexClassifier(NumberClassifier):
     def type_name(self):
         return 'hex'
 
+    @property
+    def re_expression(self):
+        return r'^[+-]?0[xX][\da-fA-F_]+$'
+
     def check(self) -> bool:
-        return bool(re.fullmatch(r'^[+-]?0[xX][\da-fA-F_]+$', self.token))
+        return bool(re.fullmatch(self.re_expression, self.token))
 
 
 class BinaryClassifier(NumberClassifier):
@@ -59,8 +69,12 @@ class BinaryClassifier(NumberClassifier):
     def type_name(self):
         return 'binary'
 
+    @property
+    def re_expression(self):
+        return r'^[+-]?0[bB][01_]+$'
+
     def check(self) -> bool:
-        return bool(re.fullmatch(r'^[+-]?0[bB][01_]+$', self.token))
+        return bool(re.fullmatch(self.re_expression, self.token))
 
 
 class OctalClassifier(NumberClassifier):
@@ -75,8 +89,12 @@ class OctalClassifier(NumberClassifier):
     def type_name(self):
         return 'octal'
 
+    @property
+    def re_expression(self):
+        return r'^[+-]?0[oO][0-7_]+$'
+
     def check(self) -> bool:
-        return bool(re.fullmatch(r'^[+-]?0[oO][0-7_]+$', self.token))
+        return bool(re.fullmatch(self.re_expression, self.token))
 
 
 class ScientificClassifier(NumberClassifier):
@@ -123,5 +141,9 @@ class IntClassifier(NumberClassifier):
     def type_name(self):
         return 'int'
 
+    @property
+    def re_expression(self):
+        return r'^[+-]?\d[\d_]*$'
+
     def check(self) -> bool:
-        return bool(re.fullmatch(r'^[+-]?\d[\d_]*$', self.token))
+        return bool(re.fullmatch(self.re_expression, self.token))

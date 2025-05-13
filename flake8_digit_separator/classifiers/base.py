@@ -16,6 +16,9 @@ class NumberClassifier(ABC):
     def check(self) -> bool:
         ...
 
+    @property
+    def re_expression(self):
+        ...
 
 class NumberClassifiersFactory(ABC):
     @property
