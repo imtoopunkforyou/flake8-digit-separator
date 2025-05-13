@@ -10,7 +10,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
 
-    steps:  # delete this
+    steps:
       - name: stub  # delete this
         run: exit 0  # delete this
       # - name: Checkout code
