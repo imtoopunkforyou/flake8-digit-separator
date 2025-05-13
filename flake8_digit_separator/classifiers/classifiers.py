@@ -192,9 +192,14 @@ class IntClassifier(NumberClassifier):
 
     def validate(self) -> bool | str:
         token = self.token.lstrip('+-')
+        cleaned = token.replace('_', '')
 
-        if len(token) > 4 and '_' not in token:
-            return False
+        if len(cleaned) >= 4:
+            if '_' in token:
+                if not re.fullmatch(r'^\d{1,3}(?:_\d{3})+$', token):
+                    return False
+            else:
+                return False
 
         return True
 
@@ -203,4 +208,4 @@ class IntClassifier(NumberClassifier):
         return 'FDS: Hello World!!!!!!!!!(PEP515)'
 
 
-a = 10000
+a = 1000_0
