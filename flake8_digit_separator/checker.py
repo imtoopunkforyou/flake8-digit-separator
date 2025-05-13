@@ -34,5 +34,7 @@ class Checker:
     def run(self):
         for token in self.file_tokens:
             if token.type == tokenize.NUMBER:
+                classifier = Classifier(token.string)
+                token_number_type = classifier.classify().type_name
                 # (line, column, msg, type)
-                yield token.start[0], token.start[1], f'FDS100 TOKEN: {token.string}', type(self)
+                yield token.start[0], token.start[1], f'FDS100 TOKEN: {token.string} {token_number_type}', type(self)
