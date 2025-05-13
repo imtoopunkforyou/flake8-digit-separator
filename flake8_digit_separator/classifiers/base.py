@@ -19,6 +19,8 @@ class NumberClassifier(ABC):
     @property
     def re_expression(self):
         ...
+        raise NotImplementedError
+
 
 class NumberClassifiersFactory(ABC):
     @property
