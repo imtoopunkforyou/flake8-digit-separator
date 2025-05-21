@@ -3,47 +3,6 @@ import re
 from flake8_digit_separator.classifiers.base import NumberValidator
 
 
-# class ComplexClassifier(NumberValidator):
-#     def __init__(self, token):
-#         self._token = token
-
-#     @property
-#     def token(self):
-#         return self._token
-
-#     @property
-#     def type_name(self):
-#         return 'complex'
-
-#     @property
-#     def re_expression(self):
-#         return (
-#             r'^[+-]?('
-#             r'('
-#             r'\d[\d_]*(\.\d[\d_]*)?([eE][+-]?\d[\d_]*)?|'    # Decimal numbers
-#             r'\.\d[\d_]*([eE][+-]?\d[\d_]*)?|'               # Numbers starting with a point
-#             r'0[xX][\da-fA-F_]+(\.[\da-fA-F_]*)?|'           # HEX with decimal point
-#             r'0[bB][01_]+|'                                  # Binary numbers
-#             r'0[oO][0-7_]+'                                  # Octal numbers
-#             r')'
-#             r')[jJ]$'
-#         )
-
-#     def check(self) -> bool:
-#         return bool(re.fullmatch(
-#             self.re_expression,
-#             self.token,
-#             flags=re.IGNORECASE,
-#         ))
-
-#     def validate(self):
-#         ...
-
-#     @property
-#     def error_message(self):
-#         ...
-
-
 class HexClassifier(NumberValidator):
     def __init__(self, token):
         self._token = token
@@ -177,29 +136,6 @@ class OctalClassifier(NumberValidator):
     @property
     def error_message(self):
         return 'FDS200: OCT'
-
-
-# class ScientificClassifier(NumberValidator):
-#     def __init__(self, token):
-#         self._token = token
-
-#     @property
-#     def token(self):
-#         return self._token.lower()
-
-#     @property
-#     def type_name(self):
-#         return 'scientific'
-
-#     def check(self) -> bool:
-#         return 'e' in self.token
-
-#     def validate(self):
-#         ...
-
-#     @property
-#     def error_message(self):
-#         ...
 
 
 class DecimalClassifier(NumberValidator):
