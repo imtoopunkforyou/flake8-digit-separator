@@ -2,26 +2,26 @@ import ast
 import tokenize
 
 from flake8_digit_separator import version
-from flake8_digit_separator.classifiers.factory import ClassifiersFactory
+from flake8_digit_separator.validators.classifier import Classifier
+from flake8_digit_separator.validators.numbers import Number
 
+# class Classifier:
+#     def __init__(self, token):
+#         self._token = token
+#         self._classifiers = ClassifiersFactory(self._token).create_ordered_classifiers()
 
-class Classifier:
-    def __init__(self, token):
-        self._token = token
-        self._classifiers = ClassifiersFactory(self._token).create_ordered_classifiers()
+#     @property
+#     def classifiers(self):
+#         return self._classifiers
 
-    @property
-    def classifiers(self):
-        return self._classifiers
+#     @property
+#     def token(self):
+#         self._token
 
-    @property
-    def token(self):
-        self._token
-
-    def classify(self):
-        for classifier in self.classifiers:
-            if classifier.check():
-                return classifier
+#     def classify(self):
+#         for classifier in self.classifiers:
+#             if classifier.check():
+#                 return classifier
 
 
 class Checker:
@@ -34,8 +34,9 @@ class Checker:
     def run(self):
         for token in self.file_tokens:
             if token.type == tokenize.NUMBER:
-                classifier = Classifier(token.string)
-                token_number = classifier.classify()
+                number: Number = Classifier().classify(token.string)
+                # classifier = Classifier(token.string)
+                # token_number = classifier.classify()
                 # (line, column, msg, type)
-                if not token_number.validate():
-                    yield token.start[0], token.start[1], token_number.error_message, type(self)
+                # if not token_number.validate():
+                    # yield token.start[0], token.start[1], token_number.error_message, type(self)

@@ -1,26 +1,32 @@
 import re
 
-from flake8_digit_separator.classifiers.base import NumberValidator
+from validators.constants import SEPARATOR
+
+from flake8_digit_separator.validators.base import Validator
+from flake8_digit_separator.validators.cleaner import Cleaner
+from flake8_digit_separator.validators.enums import NumeralSystem
+from flake8_digit_separator.validators.numbers import Number
 
 
-class HexClassifier(NumberValidator):
-    def __init__(self, token):
+class HexValidator(NumberValidator):
+    def __init__(self, token: str):
         self._token = token
+
+    @property
+    def numeral_system(self) -> NumeralSystem:
+        return NumeralSystem.HEX.value
 
     @property
     def token(self):
         return self._token
 
-    @property
-    def type_name(self):
-        return 'hex'
-
-    @property
-    def re_expression(self):
-        return r'^[+-]?0[xX][\da-fA-F_]+$'
-
     def check(self) -> bool:
-        return bool(re.fullmatch(self.re_expression, self.token))
+        try:
+            int(self.token, self.numeral_system)
+        except ValueError:
+            return False
+
+        return True
 
     def validate(self):
         token = self.token.lstrip('+-').lower()
@@ -191,24 +197,11 @@ class DecimalClassifier(NumberValidator):
         return 'FDS400: DECIMAL/FLOAT'
 
 
-class IntClassifier(NumberValidator):
-    def __init__(self, token):
-        self._token = token
-
-    @property
-    def token(self):
-        return self._token
-
-    @property
-    def type_name(self):
-        return 'int'
-
-    @property
-    def re_expression(self):
-        return r'^[+-]?\d[\d_]*$'
-
-    def check(self) -> bool:
-        return bool(re.fullmatch(self.re_expression, self.token))
+class IntValidator(Validator):
+    def __init__(self, number: Number) -> None:
+        self._number = number
+        self._pattern = r'^\d{1,3}(?:_\d{3})+$'
+        self._slice_size = 4
 
     def validate(self) -> bool:
         """
@@ -218,19 +211,33 @@ class IntClassifier(NumberValidator):
         :return: _description_
         :rtype: bool
         """
-        token = self.token.lstrip('+-')
-        cleaned = token.replace('_', '')
-
-        if len(cleaned) >= 4:
-            if '_' in token:
-                if not re.fullmatch(r'^\d{1,3}(?:_\d{3})+$', token):
-                    return False
-            else:
-                return False
-        elif len(cleaned) < 4 and '_' in token:
+        if not self.validate_supported:
             return False
 
+        if not self.validate_token_as_int():
+            return False
+
+        token = self.number.token
+        cleaned_token = Cleaner(token).clean()
+        if len(cleaned_token) < self._slice_size and SEPARATOR in token:
+            return False
+        if len(cleaned_token) >= self._slice_size:
+            if not re.fullmatch(self.pattern, token):
+                return False
+
         return True
+
+    @property
+    def slice_size(self):
+        return self._slice_size
+
+    @property
+    def number(self):
+        return self._number
+
+    @property
+    def pattern(self):
+        return self._pattern
 
     @property
     def error_message(self):
@@ -238,11 +245,16 @@ class IntClassifier(NumberValidator):
 
 
 a = 100
+a = 10_0000
 
 b = 0o_360_363
+b = 0o_360_363_0
 
 с = 0b_0_0111_1110_1001_1100
+с = 0b_0_0111_1110_1001_1100_0
 
 d = 0x_CAFE_F00D
+d = 0x_CAFE_F00D_0
 
 e = 12_123.1_231_231
+e = 12_123.1_231_231_0
