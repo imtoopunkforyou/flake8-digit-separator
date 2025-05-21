@@ -34,7 +34,7 @@ class Checker:
     def run(self):
         for token in self.file_tokens:
             if token.type == tokenize.NUMBER:
-                number: Number = Classifier().classify(token.string)
+                number: Number = Classifier().classify(token.string)  # TODO Classifier(token.string).classify()
                 # classifier = Classifier(token.string)
                 # token_number = classifier.classify()
                 # (line, column, msg, type)
