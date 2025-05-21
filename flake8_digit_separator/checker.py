@@ -39,4 +39,3 @@ class Checker:
                 # (line, column, msg, type)
                 if not token_number.validate():
                     yield token.start[0], token.start[1], token_number.error_message, type(self)
-

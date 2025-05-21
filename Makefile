@@ -17,6 +17,8 @@ test:
 	poetry run pytest ./tests/ 
 py:
 	poetry run python
+fds:
+	poetry run flake8 --select FDS ./
 
 # === Aliases ===
 pc: pre-commit

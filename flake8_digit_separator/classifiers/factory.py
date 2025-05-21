@@ -1,16 +1,16 @@
-from flake8_digit_separator.classifiers.base import NumberClassifiersFactory
+from flake8_digit_separator.classifiers.base import NumberValidatorsFactory
 from flake8_digit_separator.classifiers.classifiers import (
     BinaryClassifier,
-    ComplexClassifier,
+    # ComplexClassifier,
     DecimalClassifier,
     HexClassifier,
     IntClassifier,
     OctalClassifier,
-    ScientificClassifier,
+    # ScientificClassifier,
 )
 
 
-class ClassifiersFactory(NumberClassifiersFactory):
+class ClassifiersFactory(NumberValidatorsFactory):
     def __init__(self, token):
         self._token = token
 
@@ -20,11 +20,11 @@ class ClassifiersFactory(NumberClassifiersFactory):
 
     def create_ordered_classifiers(self):
         return (  # noqa: WPS227
-            ComplexClassifier(self.token),
+            # ComplexClassifier(self.token),
             HexClassifier(self.token),
             BinaryClassifier(self.token),
             OctalClassifier(self.token),
-            ScientificClassifier(self.token),
+            # ScientificClassifier(self.token),
             DecimalClassifier(self.token),
             IntClassifier(self.token),
         )

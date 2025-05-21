@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class NumberClassifier(ABC):
+class NumberValidator(ABC):
     @property
     @abstractmethod
     def type_name(self) -> str:
@@ -19,6 +19,7 @@ class NumberClassifier(ABC):
     @property
     def re_expression(self):
         ...
+
         raise NotImplementedError
 
     @abstractmethod
@@ -30,13 +31,14 @@ class NumberClassifier(ABC):
     def error_message(self):
         ...
 
-class NumberClassifiersFactory(ABC):
+
+class NumberValidatorsFactory(ABC):
     @property
     @abstractmethod
     def token(self):
         ...
 
     @abstractmethod
-    def create_ordered_classifiers(self) -> tuple[NumberClassifier, ...]:
+    def create_ordered_classifiers(self) -> tuple[NumberValidator, ...]:
         ...
 
