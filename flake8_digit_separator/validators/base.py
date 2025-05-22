@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from flake8_digit_separator.validators.numbers import Number
+from flake8_digit_separator.numbers.base import Number
 
 
 class BaseClassifier(ABC):

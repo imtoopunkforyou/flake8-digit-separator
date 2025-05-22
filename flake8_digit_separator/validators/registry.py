@@ -1,20 +1,20 @@
 from typing import final
 
-from flake8_digit_separator.validators.base import Validator
-from flake8_digit_separator.validators.numbers import (
+from flake8_digit_separator.numbers.base import Number
+from flake8_digit_separator.numbers.numbers import (
     BinaryNumber,
+    DecimalNumber,
     HexNumber,
     IntNumber,
-    Number,
     OctalNumber,
-    DecimalNumber,
 )
+from flake8_digit_separator.validators.base import Validator
 from flake8_digit_separator.validators.validators import (
     BinaryValidator,
+    DecimalValidator,
     HexValidator,
     IntValidator,
     OctalValidator,
-    DecimalValidator,
 )
 
 

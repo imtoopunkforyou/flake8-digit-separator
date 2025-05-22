@@ -1,19 +1,9 @@
 import re
-from typing import Mapping
 
+from flake8_digit_separator.numbers.base import Number
 from flake8_digit_separator.validators.base import Validator
 from flake8_digit_separator.validators.cleaner import Cleaner
 from flake8_digit_separator.validators.constants import SEPARATOR
-from flake8_digit_separator.validators.numbers import (
-    BinaryNumber,
-    ComplexNumber,
-    DecimalNumber,
-    HexNumber,
-    IntNumber,
-    Number,
-    OctalNumber,
-    ScientificNumber,
-)
 
 
 class HexValidator(Validator):
@@ -21,11 +11,10 @@ class HexValidator(Validator):
         self._number = number
         self._pattern = r'^[0-9a-f]{1,4}(?:_[0-9a-f]{4})+$'
 
-
     def validate(self):
         if not self.validate_token_as_int():
             return False
-        
+
         token = self.number.token
         if not token.startswith(self.number.prefix):
             return False

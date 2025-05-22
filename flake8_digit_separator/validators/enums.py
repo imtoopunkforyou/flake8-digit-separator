@@ -15,6 +15,7 @@ class NumberPrefix(enum.Enum):
     OCTAL = '0o_'
     HEX = '0x_'
 
+
 @enum.unique
 class NumberDelimiter(enum.Enum):
     DECIMAL = '.'

@@ -1,17 +1,17 @@
-from flake8_digit_separator.validators.base import BaseClassifier
-from flake8_digit_separator.validators.enums import (
-    NumberDelimiter,
-    NumberPrefix,
-)
-from flake8_digit_separator.validators.numbers import (
+from flake8_digit_separator.numbers.base import Number
+from flake8_digit_separator.numbers.numbers import (
     BinaryNumber,
     ComplexNumber,
     DecimalNumber,
     HexNumber,
     IntNumber,
-    Number,
     OctalNumber,
     ScientificNumber,
+)
+from flake8_digit_separator.validators.base import BaseClassifier
+from flake8_digit_separator.validators.enums import (
+    NumberDelimiter,
+    NumberPrefix,
 )
 
 
