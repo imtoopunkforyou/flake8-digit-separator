@@ -63,10 +63,4 @@ class NumberWithPrefixValidator(Validator):
 
         return True
 
-    @property
-    def number(self) -> Number:
-        return self._number
 
-    @property
-    def minimum_length(self):
-        return self._minimum_length
