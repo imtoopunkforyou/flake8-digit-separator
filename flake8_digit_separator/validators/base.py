@@ -1,21 +1,31 @@
 from abc import ABC, abstractmethod
 
 from flake8_digit_separator.numbers.base import Number
+from flake8_digit_separator.validators.constants import SEPARATOR
 
 
 class BaseClassifier(ABC):
+    @property
+    @abstractmethod
+    def token(self):
+        ...
+
     @abstractmethod
     def classify(self):
         ...
 
 
 class Validator(ABC):
-    @property
-    @abstractmethod
-    def number(self) -> Number:
-        ...
+    def validate_length(self) -> bool:
+        if (
+            (len(self.number.cleaned_token) < self.minimum_length)
+            and (SEPARATOR in self.number.token)
+        ):
+            return False
 
-    def validate_token_as_int(self):
+        return True
+
+    def validate_token_as_int(self) -> bool:
         try:
             int(self.number.token, self.number.numeral_system)
         except ValueError:
@@ -25,7 +35,17 @@ class Validator(ABC):
 
     @property
     @abstractmethod
+    def number(self) -> Number:
+        ...
+
+    @property
+    @abstractmethod
     def pattern(self) -> str:
+        ...
+
+    @property
+    @abstractmethod
+    def minimum_length(self) -> int:
         ...
 
     @abstractmethod
