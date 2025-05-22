@@ -9,13 +9,11 @@ from flake8_digit_separator.numbers.numbers import (
     OctalNumber,
 )
 from flake8_digit_separator.validators.base import Validator
-from flake8_digit_separator.validators.validators import (
-    BinaryValidator,
-    DecimalValidator,
-    HexValidator,
-    IntValidator,
-    OctalValidator,
-)
+from flake8_digit_separator.validators.validator_binary import BinaryValidator
+from flake8_digit_separator.validators.validator_decimal import DecimalValidator
+from flake8_digit_separator.validators.validator_hex import HexValidator
+from flake8_digit_separator.validators.validator_int import IntValidator
+from flake8_digit_separator.validators.validator_octal import OctalValidator
 
 
 @final
