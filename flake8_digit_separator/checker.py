@@ -18,14 +18,24 @@ class Checker:
     def run(self):
         for token in self.file_tokens:
             if token.type == tokenize.NUMBER:
-                classifier = Classifier(token.string)
-                number: Number = classifier.classify()
-                if number.is_supported:
-                    validator = ValidatorRegistry.get_validator(number)
-                    if not validator.validate():
-                        yield Error(
-                            line=token.start[0],
-                            column=token.start[1],
-                            message=validator.error_message,
-                            object_type=type(self),
-                        ).as_tuple()
+                error = self._process_number_token(token)
+                if error:
+                    yield error.as_tuple()
+
+    def _process_number_token(self, token: tokenize.TokenInfo) -> Error | None:
+        classifier = Classifier(token.string)
+        number: Number = classifier.classify()
+
+        if not number.is_supported:
+            return None
+
+        validator = ValidatorRegistry.get_validator(number)
+        if validator.validate():
+            return None
+
+        return Error(
+            line=token.start[0],
+            column=token.start[1],
+            message=validator.error_message,
+            object_type=type(self),
+        )
