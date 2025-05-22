@@ -1,8 +1,10 @@
 from numbers import Number
+from typing import final
 
 from flake8_digit_separator.validators.base import NumberWithPrefixValidator
 
 
+@final
 class HexValidator(NumberWithPrefixValidator):
     def __init__(self, number: str) -> None:
         self._pattern = r'^[0-9a-f]{1,4}(?:_[0-9a-f]{4})+$'

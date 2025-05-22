@@ -1,9 +1,11 @@
 import re
 from numbers import Number
+from typing import final
 
 from flake8_digit_separator.validators.base import Validator
 
 
+@final
 class IntValidator(Validator):
     def __init__(self, number: Number) -> None:
         self._number = number

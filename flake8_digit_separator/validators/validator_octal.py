@@ -1,8 +1,10 @@
 from numbers import Number
+from typing import final
 
 from flake8_digit_separator.validators.base import NumberWithPrefixValidator
 
 
+@final
 class OctalValidator(NumberWithPrefixValidator):
     def __init__(self, number: Number):
         self._number = number
