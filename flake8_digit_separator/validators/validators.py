@@ -12,7 +12,8 @@ from flake8_digit_separator.validators.constants import SEPARATOR
 class HexValidator(NumberWithPrefixValidator):
     def __init__(self, number: str) -> None:
         self._pattern = r'^[0-9a-f]{1,4}(?:_[0-9a-f]{4})+$'
-        super().__init__(number=number)
+        self._minimum_length = 5
+        self._number = number
 
     @property
     def pattern(self) -> str:
@@ -26,7 +27,8 @@ class HexValidator(NumberWithPrefixValidator):
 class BinaryValidator(NumberWithPrefixValidator):
     def __init__(self, number: str) -> None:
         self._pattern = r'^[0-9a-f]{1,4}(?:_[0-9a-f]{4})+$'
-        super().__init__(number=number)
+        self._minimum_length = 5
+        self._number = number
 
     @property
     def pattern(self):

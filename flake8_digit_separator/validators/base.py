@@ -49,10 +49,6 @@ class Validator(ABC):
 
 
 class NumberWithPrefixValidator(Validator):
-    def __init__(self, number: str) -> None:
-        self._number = number
-        self._minimum_length = 5
-
     def validate(self):
         if not self.validate_token_as_int():
             return False
@@ -61,7 +57,7 @@ class NumberWithPrefixValidator(Validator):
         if not self.number.token.startswith(self.number.prefix):
             return False
 
-        if len(self.number.cleaned_token) >= 5:
+        if len(self.number.cleaned_token) >= self.minimum_length:
             if not re.fullmatch(self.pattern, self.number.token[3:]):
                 return False
 
