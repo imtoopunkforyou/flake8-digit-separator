@@ -1,4 +1,4 @@
-from flake8_digit_separator import version
+from flake8_digit_separator import __version__ as version
 
 
 def test_const():
