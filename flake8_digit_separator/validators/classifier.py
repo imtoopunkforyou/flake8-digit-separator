@@ -16,8 +16,15 @@ from flake8_digit_separator.validators.numbers import (
 
 
 class Classifier(BaseClassifier):
-    def classify(self, token: str) -> Number:  # noqa: WPS212
-        token = token.lower()
+    def __init__(self, token: str):
+        self._token = token
+
+    @property
+    def token(self):
+        return self._token
+
+    def classify(self) -> Number:  # noqa: WPS212
+        token = self._token.lower()
         match token:
             case tok if 'j' in tok:
                 return ComplexNumber(tok)

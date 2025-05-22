@@ -1,22 +1,25 @@
 from dataclasses import dataclass
 
-from validators.constants import SEPARATOR
-from validators.enums import NumberDelimiter, NumberPrefix, NumeralSystem
+from flake8_digit_separator.validators.enums import (
+    NumberDelimiter,
+    NumberPrefix,
+    NumeralSystem,
+)
 
 
-@dataclass
+@dataclass(frozen=True)
 class Number:
     token: str
-    supported: bool = True
     numeral_system: NumeralSystem
+    is_supported: bool
 
 
-@dataclass
+@dataclass(frozen=True)
 class NumberWithPrefix(Number):
     prefix: NumberPrefix
 
 
-@dataclass
+@dataclass(frozen=True)
 class NumberWithDelimiter(Number):
     delimiter: NumberDelimiter
 
@@ -24,36 +27,44 @@ class NumberWithDelimiter(Number):
 @dataclass(frozen=True)
 class IntNumber(Number):
     numeral_system: NumeralSystem = NumeralSystem.DECIMAL.value
+    is_supported: bool = True
 
 
 @dataclass(frozen=True)
 class HexNumber(NumberWithPrefix):
     numeral_system: NumeralSystem = NumeralSystem.HEX.value
+    is_supported: bool = True
+    prefix: NumberPrefix = NumberPrefix.HEX.value
 
 
 @dataclass(frozen=True)
 class OctalNumber(NumberWithPrefix):
     numeral_system: NumeralSystem = NumeralSystem.OCTAL.value
+    is_supported: bool = True
+    prefix: NumberPrefix = NumberPrefix.OCTAL.value
 
 
 @dataclass(frozen=True)
 class DecimalNumber(NumberWithDelimiter):
+    numeral_system: NumeralSystem = NumeralSystem.DECIMAL.value
+    is_supported: bool = True
     delimiter: NumberDelimiter = NumberDelimiter.DECIMAL.value
 
 
 @dataclass(frozen=True)
 class BinaryNumber(NumberWithPrefix):
-    prefix: NumberPrefix = NumberPrefix.BINARY.value
     numeral_system: NumeralSystem = NumeralSystem.BINARY.value
+    is_supported: bool = True
+    prefix: NumberPrefix = NumberPrefix.BINARY.value
 
 
 @dataclass(frozen=True)
 class ComplexNumber(Number):
-    supported: bool = False
     numeral_system: NumeralSystem = NumeralSystem.DECIMAL.value
+    is_supported: bool = False
 
 
 @dataclass(frozen=True)
 class ScientificNumber(Number):
-    supported: bool = False
     numeral_system: NumeralSystem = NumeralSystem.DECIMAL.value
+    is_supported: bool = False

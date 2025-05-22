@@ -11,17 +11,9 @@ class NumeralSystem(enum.Enum):
 
 @enum.unique
 class NumberPrefix(enum.Enum):
-    BINARY = '0b'
-    OCTAL = '0o'
-    HEX = '0x'
-
-    def w_separator(self):
-        template = '{prefix}_'
-
-        return template.format(
-            prefix=self,
-        )
-
+    BINARY = '0b_'
+    OCTAL = '0o_'
+    HEX = '0x_'
 
 @enum.unique
 class NumberDelimiter(enum.Enum):

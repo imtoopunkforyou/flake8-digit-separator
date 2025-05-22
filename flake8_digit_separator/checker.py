@@ -4,24 +4,7 @@ import tokenize
 from flake8_digit_separator import version
 from flake8_digit_separator.validators.classifier import Classifier
 from flake8_digit_separator.validators.numbers import Number
-
-# class Classifier:
-#     def __init__(self, token):
-#         self._token = token
-#         self._classifiers = ClassifiersFactory(self._token).create_ordered_classifiers()
-
-#     @property
-#     def classifiers(self):
-#         return self._classifiers
-
-#     @property
-#     def token(self):
-#         self._token
-
-#     def classify(self):
-#         for classifier in self.classifiers:
-#             if classifier.check():
-#                 return classifier
+from flake8_digit_separator.validators.registry import ValidatorRegistry
 
 
 class Checker:
@@ -33,10 +16,11 @@ class Checker:
 
     def run(self):
         for token in self.file_tokens:
-            if token.type == tokenize.NUMBER:
-                number: Number = Classifier().classify(token.string)  # TODO Classifier(token.string).classify()
-                # classifier = Classifier(token.string)
-                # token_number = classifier.classify()
-                # (line, column, msg, type)
-                # if not token_number.validate():
-                    # yield token.start[0], token.start[1], token_number.error_message, type(self)
+            if token.type == tokenize.NUMBER:  # TODO token to type
+                classifier = Classifier(token.string)
+                number: Number = classifier.classify()
+                if number.is_supported:
+                    validator = ValidatorRegistry.get_validator(number)
+                    if not validator.validate():
+                        # (line, column, msg, type)
+                        yield token.start[0], token.start[1], validator.error_message, type(self)
