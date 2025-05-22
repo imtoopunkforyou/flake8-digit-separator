@@ -1,11 +1,11 @@
 from dataclasses import dataclass
 
-from flake8_digit_separator.validators.cleaner import Cleaner
-from flake8_digit_separator.validators.enums import (
+from flake8_digit_separator.numbers.enums import (
     NumberDelimiter,
     NumberPrefix,
     NumeralSystem,
 )
+from flake8_digit_separator.transformations.cleaner import Cleaner
 
 
 @dataclass(frozen=True)

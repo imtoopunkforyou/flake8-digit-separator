@@ -1,8 +1,8 @@
 import re
 
 from flake8_digit_separator.numbers.base import Number
+from flake8_digit_separator.transformations.cleaner import Cleaner
 from flake8_digit_separator.validators.base import Validator
-from flake8_digit_separator.validators.cleaner import Cleaner
 from flake8_digit_separator.validators.constants import SEPARATOR
 
 

@@ -4,17 +4,6 @@ from flake8_digit_separator.numbers.base import Number
 from flake8_digit_separator.validators.constants import SEPARATOR
 
 
-class BaseClassifier(ABC):
-    @property
-    @abstractmethod
-    def token(self):
-        ...
-
-    @abstractmethod
-    def classify(self):
-        ...
-
-
 class Validator(ABC):
     def validate_length(self) -> bool:
         if (

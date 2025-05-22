@@ -1,4 +1,6 @@
+from flake8_digit_separator.classifiers.base import BaseClassifier
 from flake8_digit_separator.numbers.base import Number
+from flake8_digit_separator.numbers.enums import NumberDelimiter, NumberPrefix
 from flake8_digit_separator.numbers.numbers import (
     BinaryNumber,
     ComplexNumber,
@@ -8,20 +10,11 @@ from flake8_digit_separator.numbers.numbers import (
     OctalNumber,
     ScientificNumber,
 )
-from flake8_digit_separator.validators.base import BaseClassifier
-from flake8_digit_separator.validators.enums import (
-    NumberDelimiter,
-    NumberPrefix,
-)
 
 
 class Classifier(BaseClassifier):
     def __init__(self, token: str):
         self._token = token
-
-    @property
-    def token(self):
-        return self._token
 
     def classify(self) -> Number:  # noqa: WPS212
         token = self._token.lower()
@@ -40,3 +33,7 @@ class Classifier(BaseClassifier):
                 return DecimalNumber(tok)
             case _:
                 return IntNumber(token)
+
+    @property
+    def token(self):
+        return self._token

@@ -5,7 +5,7 @@ from flake8_digit_separator.numbers.base import (
     NumberWithDelimiter,
     NumberWithPrefix,
 )
-from flake8_digit_separator.validators.enums import (
+from flake8_digit_separator.numbers.enums import (
     NumberDelimiter,
     NumberPrefix,
     NumeralSystem,
