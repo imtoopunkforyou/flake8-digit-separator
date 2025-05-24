@@ -6,23 +6,6 @@ from flake8_digit_separator.validators.constants import SEPARATOR
 
 
 class Validator(ABC):
-    def validate_length(self) -> bool:
-        if (
-            (len(self.number.cleaned_token) < self.minimum_length)
-            and (SEPARATOR in self.number.token)
-        ):
-            return False
-
-        return True
-
-    def validate_token_as_int(self) -> bool:
-        try:
-            int(self.number.token, self.number.numeral_system)
-        except ValueError:
-            return False
-
-        return True
-
     @property
     @abstractmethod
     def number(self) -> Number:
@@ -48,7 +31,50 @@ class Validator(ABC):
         ...
 
 
-class NumberWithPrefixValidator(Validator):
+class BaseValidator(Validator):
+    def validate_length(self) -> bool:
+        if (
+            (len(self.number.cleaned_token) < self.minimum_length)
+            and (SEPARATOR in self.number.token)
+        ):
+            return False
+
+        return True
+
+    def validate_token_as_int(self) -> bool:
+        try:
+            int(self.number.token, self.number.numeral_system)
+        except ValueError:
+            return False
+
+        return True
+
+    @property
+    @abstractmethod
+    def number(self) -> Number:
+        raise NotImplementedError('The method must be overridden')
+
+    @property
+    @abstractmethod
+    def pattern(self) -> str:
+        raise NotImplementedError('The method must be overridden')
+
+    @property
+    @abstractmethod
+    def minimum_length(self) -> int:
+        raise NotImplementedError('The method must be overridden')
+
+    @abstractmethod
+    def validate(self):
+        raise NotImplementedError('The method must be overridden')
+
+    @property
+    @abstractmethod
+    def error_message(self):
+        raise NotImplementedError('The method must be overridden')
+
+
+class NumberWithPrefixValidator(BaseValidator):
     def validate(self):
         if not self.validate_token_as_int():
             return False
@@ -64,17 +90,22 @@ class NumberWithPrefixValidator(Validator):
         return True
 
 
-# a = 100
-# a = 10_0000
+class NumberWithOutPrefixValidator(BaseValidator):
+    pass
 
-# b = 0o_360_363
-# b = 0o_360_363_0
 
-# с = 0b_0_0111_1110_1001_1100
-# с = 0b_0_0111_1110_1001_1100_0
 
-# d = 0x_CAFE_F00D
-# d = 0x_CAFE_F00D_0
+a = 100
+a = 10_0000
 
-# e = 12_123.1_231_231
-# e = 12_123.1_231_231_0
+b = 0o_360_363
+b = 0o_360_363_0
+
+с = 0b_0_0111_1110_1001_1100
+с = 0b_0_0111_1110_1001_1100_0
+
+d = 0x_CAFE_F00D
+d = 0x_CAFE_F00D_0
+
+e = 12_123.1_231_231
+e = 12_123.1_231_231_0

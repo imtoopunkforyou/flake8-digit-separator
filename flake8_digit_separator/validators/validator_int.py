@@ -2,11 +2,11 @@ import re
 from numbers import Number
 from typing import final
 
-from flake8_digit_separator.validators.base import Validator
+from flake8_digit_separator.validators.base import NumberWithOutPrefixValidator
 
 
 @final
-class IntValidator(Validator):
+class IntValidator(NumberWithOutPrefixValidator):
     def __init__(self, number: Number) -> None:
         self._number = number
         self._minimum_length = 4

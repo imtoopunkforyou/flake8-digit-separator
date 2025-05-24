@@ -3,12 +3,12 @@ from numbers import Number
 from typing import final
 
 from flake8_digit_separator.transformations.cleaner import Cleaner
-from flake8_digit_separator.validators.base import Validator
+from flake8_digit_separator.validators.base import NumberWithOutPrefixValidator
 from flake8_digit_separator.validators.constants import SEPARATOR
 
 
 @final
-class DecimalValidator(Validator):
+class DecimalValidator(NumberWithOutPrefixValidator):
     def __init__(self, number: Number) -> None:
         self._number = number
         self._minimum_length = 4
