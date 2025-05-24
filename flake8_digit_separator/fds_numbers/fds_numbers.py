@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
 from flake8_digit_separator.fds_numbers.base import (
-    Number,
+    FDSNumber,
     NumberWithDelimiter,
     NumberWithPrefix,
 )
@@ -13,7 +13,7 @@ from flake8_digit_separator.fds_numbers.enums import (
 
 
 @dataclass(frozen=True)
-class IntNumber(Number):
+class IntNumber(FDSNumber):
     numeral_system: NumeralSystem = NumeralSystem.DECIMAL.value
     is_supported: bool = True
 
@@ -47,12 +47,12 @@ class BinaryNumber(NumberWithPrefix):
 
 
 @dataclass(frozen=True)
-class ComplexNumber(Number):
+class ComplexNumber(FDSNumber):
     numeral_system: NumeralSystem = NumeralSystem.DECIMAL.value
     is_supported: bool = False
 
 
 @dataclass(frozen=True)
-class ScientificNumber(Number):
+class ScientificNumber(FDSNumber):
     numeral_system: NumeralSystem = NumeralSystem.DECIMAL.value
     is_supported: bool = False

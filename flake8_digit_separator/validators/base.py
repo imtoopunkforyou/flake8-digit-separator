@@ -2,7 +2,7 @@ import re
 from abc import ABC, abstractmethod
 from typing import TypeVar
 
-from flake8_digit_separator.fds_numbers.base import Number
+from flake8_digit_separator.fds_numbers.base import FDSNumber
 from flake8_digit_separator.validators.constants import SEPARATOR
 
 SelfValidator = TypeVar('SelfValidator', bound='Validator')
@@ -14,7 +14,7 @@ SelfNumberWithOutPrefixValidator = TypeVar('SelfNumberWithOutPrefixValidator', b
 class Validator(ABC):
     @property
     @abstractmethod
-    def number(self: SelfValidator) -> Number:
+    def number(self: SelfValidator) -> FDSNumber:
         ...
 
     @property

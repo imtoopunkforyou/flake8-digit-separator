@@ -5,7 +5,7 @@ from flake8_digit_separator import __version__ as version
 from flake8_digit_separator.classifiers.base import Classifier
 from flake8_digit_separator.classifiers.registry import ClassifierRegistry
 from flake8_digit_separator.error import Error
-from flake8_digit_separator.fds_numbers.base import Number
+from flake8_digit_separator.fds_numbers.base import FDSNumber
 from flake8_digit_separator.validators.registry import ValidatorRegistry
 
 
@@ -26,7 +26,7 @@ class Checker:
     def _process_number_token(self, token: tokenize.TokenInfo) -> Error | None:
         classifiers: tuple[Classifier, ...] = ClassifierRegistry.get_ordered_classifiers()
         for classifier in classifiers:
-            number: Number = classifier(token.string).classify()
+            number: FDSNumber = classifier(token.string).classify()
             if number:
                 break
 

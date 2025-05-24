@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from typing import TypeAlias, TypeVar
 
 from flake8_digit_separator.classifiers.types import TokenLikeStr
-from flake8_digit_separator.fds_numbers.base import Number
+from flake8_digit_separator.fds_numbers.base import FDSNumber
 
 SelfClassifier = TypeVar('SelfClassifier', bound='Classifier')
 
@@ -21,7 +21,7 @@ class Classifier(ABC):
         ...
 
     @abstractmethod
-    def classify(self: SelfClassifier) -> Number:
+    def classify(self: SelfClassifier) -> FDSNumber:
         ...
 
 

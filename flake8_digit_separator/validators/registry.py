@@ -1,6 +1,6 @@
 from typing import final
 
-from flake8_digit_separator.fds_numbers.base import Number
+from flake8_digit_separator.fds_numbers.base import FDSNumber
 from flake8_digit_separator.fds_numbers.fds_numbers import (
     BinaryNumber,
     DecimalNumber,
@@ -18,7 +18,7 @@ from flake8_digit_separator.validators.validator_octal import OctalValidator
 
 @final
 class ValidatorRegistry:
-    mapping: dict[type[Number], type[Validator]] = {
+    mapping: dict[type[FDSNumber], type[Validator]] = {
         IntNumber: IntValidator,
         HexNumber: HexValidator,
         OctalNumber: OctalValidator,
@@ -27,7 +27,7 @@ class ValidatorRegistry:
     }
 
     @classmethod
-    def get_validator(cls, number: Number) -> Validator:
+    def get_validator(cls, number: FDSNumber) -> Validator:
         validator_cls = cls.mapping.get(number.__class__)
         if not validator_cls:
             msg = 'No validator registered for {number}'
