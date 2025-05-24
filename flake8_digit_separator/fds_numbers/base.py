@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import TypeVar
 
 from flake8_digit_separator.fds_numbers.enums import (
     NumberDelimiter,
@@ -6,6 +7,9 @@ from flake8_digit_separator.fds_numbers.enums import (
     NumeralSystem,
 )
 from flake8_digit_separator.transformations.cleaner import Cleaner
+from flake8_digit_separator.types import CleanedToken
+
+SelfNumber = TypeVar('SelfNumber', bound='Number')
 
 
 @dataclass(frozen=True)
@@ -15,7 +19,7 @@ class Number:
     is_supported: bool
 
     @property
-    def cleaned_token(self) -> str:
+    def cleaned_token(self: SelfNumber) -> CleanedToken:
         cleaner = Cleaner(self.token)
 
         return cleaner.clean()
