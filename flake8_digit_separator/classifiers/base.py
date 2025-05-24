@@ -5,6 +5,7 @@ from flake8_digit_separator.fds_numbers.base import Number
 from flake8_digit_separator.types import TokenLikeStr
 
 SelfClassifier = TypeVar('SelfClassifier', bound='Classifier')
+
 LowerTokenLikeStr: TypeAlias = str
 
 
