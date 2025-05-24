@@ -70,7 +70,6 @@ class NumberWithOutPrefixValidator(BaseValidator):
     pass
 
 
-
 a = 100
 a = 10_0000
 
@@ -81,7 +80,7 @@ b = 0o_360_363_0
 с = 0b_0_0111_1110_1001_1100_0
 
 d = 0x_CAFE_F00D
-d = 0x_CAFE_F00D_0
+dertrf = 0x_CAFE_F00D_0
 
 e = 12_123.1_231_231
 e = 12_123.1_231_231_0
