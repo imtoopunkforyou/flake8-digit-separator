@@ -1,6 +1,6 @@
 from flake8_digit_separator.classifiers.base import BaseClassifier
-from flake8_digit_separator.numbers.enums import NumberPrefix
-from flake8_digit_separator.numbers.numbers import BinaryNumber
+from flake8_digit_separator.fds_numbers.enums import NumberPrefix
+from flake8_digit_separator.fds_numbers.fds_numbers import BinaryNumber
 
 
 class BinaryClassifier(BaseClassifier):

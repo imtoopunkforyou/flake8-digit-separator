@@ -1,7 +1,7 @@
 from typing import final
 
-from flake8_digit_separator.numbers.base import Number
-from flake8_digit_separator.numbers.numbers import (
+from flake8_digit_separator.fds_numbers.base import Number
+from flake8_digit_separator.fds_numbers.fds_numbers import (
     BinaryNumber,
     DecimalNumber,
     HexNumber,

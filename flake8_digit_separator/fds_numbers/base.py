@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from flake8_digit_separator.numbers.enums import (
+from flake8_digit_separator.fds_numbers.enums import (
     NumberDelimiter,
     NumberPrefix,
     NumeralSystem,
