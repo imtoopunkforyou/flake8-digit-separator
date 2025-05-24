@@ -1,4 +1,4 @@
-from typing import final
+from typing import TypeVar, final
 
 from flake8_digit_separator.classifiers.base import Classifier
 from flake8_digit_separator.classifiers.classifier_binary import (
@@ -17,6 +17,8 @@ from flake8_digit_separator.classifiers.classifier_scientific import (
     ScientifiClassifier,
 )
 
+SelfClassifierRegistry = TypeVar('SelfClassifierRegistry', bound='ClassifierRegistry')
+
 
 @final
 class ClassifierRegistry:
@@ -29,7 +31,7 @@ class ClassifierRegistry:
     int_classifier = IntClassifier
 
     @classmethod
-    def get_ordered_classifiers(cls) -> tuple[type[Classifier], ...]:
+    def get_ordered_classifiers(cls: type[SelfClassifierRegistry]) -> tuple[type[Classifier], ...]:
         return (  # noqa: WPS227
             cls.hex_classifier,
             cls.octal_classifier,

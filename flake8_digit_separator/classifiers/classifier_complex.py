@@ -16,5 +16,5 @@ class ComplexClassifier(BaseClassifier):
             return ComplexNumber(self.token_lower)
 
     @property
-    def token(self: SelfComplexClassifier) -> str:
+    def token(self: SelfComplexClassifier) -> TokenLikeStr:
         return self._token
