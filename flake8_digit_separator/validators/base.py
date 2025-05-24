@@ -49,30 +49,6 @@ class BaseValidator(Validator):
 
         return True
 
-    @property
-    @abstractmethod
-    def number(self) -> Number:
-        raise NotImplementedError('The method must be overridden')
-
-    @property
-    @abstractmethod
-    def pattern(self) -> str:
-        raise NotImplementedError('The method must be overridden')
-
-    @property
-    @abstractmethod
-    def minimum_length(self) -> int:
-        raise NotImplementedError('The method must be overridden')
-
-    @abstractmethod
-    def validate(self):
-        raise NotImplementedError('The method must be overridden')
-
-    @property
-    @abstractmethod
-    def error_message(self):
-        raise NotImplementedError('The method must be overridden')
-
 
 class NumberWithPrefixValidator(BaseValidator):
     def validate(self):
