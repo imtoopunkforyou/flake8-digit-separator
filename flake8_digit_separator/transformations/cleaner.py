@@ -1,17 +1,19 @@
 import re
-from typing import ClassVar, final
+from typing import ClassVar, TypeVar, final
+
+SelfCleaner = TypeVar('SelfCleaner', bound='Cleaner')
 
 
 @final
 class Cleaner:
     pattern: ClassVar[re.Pattern] = re.compile(r'[+\-_]')
 
-    def __init__(self, text: str) -> None:
+    def __init__(self: SelfCleaner, text: str) -> None:
         self._text = text
 
     @property
-    def text(self) -> str:
+    def text(self: SelfCleaner) -> str:
         return self._text
 
-    def clean(self) -> str:
+    def clean(self: SelfCleaner) -> str:
         return self.pattern.sub('', self._text)

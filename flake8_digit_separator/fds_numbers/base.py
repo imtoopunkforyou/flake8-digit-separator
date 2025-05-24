@@ -11,11 +11,12 @@ from flake8_digit_separator.transformations.cleaner import Cleaner
 SelfNumber = TypeVar('SelfNumber', bound='Number')
 
 CleanedToken: TypeAlias = str
+NumberTokenLikeStr: TypeAlias = str
 
 
 @dataclass(frozen=True)
 class Number:
-    token: str
+    token: NumberTokenLikeStr
     numeral_system: NumeralSystem
     is_supported: bool
 

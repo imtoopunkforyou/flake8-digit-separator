@@ -1,8 +1,8 @@
 from typing import TypeVar
 
 from flake8_digit_separator.classifiers.base import BaseClassifier
+from flake8_digit_separator.classifiers.types import TokenLikeStr
 from flake8_digit_separator.fds_numbers.fds_numbers import IntNumber
-from flake8_digit_separator.types import TokenLikeStr
 
 SelfIntClassifier = TypeVar('SelfIntClassifier', bound='IntClassifier')
 
