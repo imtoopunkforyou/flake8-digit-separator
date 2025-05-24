@@ -56,3 +56,9 @@ class ComplexNumber(Number):
 class ScientificNumber(Number):
     numeral_system: NumeralSystem = NumeralSystem.DECIMAL.value
     is_supported: bool = False
+
+
+@dataclass(frozen=True)
+class UnsupportedNumber(Number):
+    numeral_system = None
+    is_supported: bool = False
