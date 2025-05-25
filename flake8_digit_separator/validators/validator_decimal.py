@@ -1,7 +1,7 @@
 import re
-from numbers import Number
 from typing import TypeVar, final
 
+from flake8_digit_separator.fds_numbers.fds_numbers import DecimalNumber
 from flake8_digit_separator.rules.rules import DecimalFDSRules
 from flake8_digit_separator.transformations.cleaner import Cleaner
 from flake8_digit_separator.validators.base import NumberWithOutPrefixValidator
@@ -12,7 +12,7 @@ SelfDecimalValidator = TypeVar('SelfDecimalValidator', bound='DecimalValidator')
 
 @final
 class DecimalValidator(NumberWithOutPrefixValidator):
-    def __init__(self: SelfDecimalValidator, number: Number) -> None:
+    def __init__(self: SelfDecimalValidator, number: DecimalNumber) -> None:
         self._number = number
         self._minimum_length = 4
         self._pattern = r'^\d{1,3}(?:_\d{3})+$'
@@ -21,7 +21,7 @@ class DecimalValidator(NumberWithOutPrefixValidator):
         if not self.validate_token_as_int():
             return False
 
-        parts: list[str, str] = self.number.token.split(self.number.delimiter)
+        parts: list[str] = self.number.token.split(self.number.delimiter.value)
         for part in parts:
             cleaned_part = Cleaner(part).clean()
             if len(cleaned_part) >= 4:
@@ -41,7 +41,7 @@ class DecimalValidator(NumberWithOutPrefixValidator):
         return self._minimum_length
 
     @property
-    def number(self: SelfDecimalValidator) -> str:
+    def number(self: SelfDecimalValidator) -> DecimalNumber:
         return self._number
 
     @property
