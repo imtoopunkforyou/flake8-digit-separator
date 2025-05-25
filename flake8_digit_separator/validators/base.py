@@ -28,17 +28,17 @@ class Validator(ABC):
         ...
 
     @abstractmethod
-    def validate(self) -> bool:
+    def validate(self: SelfValidator) -> bool:
         ...
 
     @property
     @abstractmethod
-    def error_message(self) -> str:
+    def error_message(self: SelfValidator) -> str:
         ...
 
 
 class BaseValidator(Validator):
-    def validate_length(self) -> bool:
+    def validate_length(self: SelfBaseValidator) -> bool:
         if (
             (len(self.number.cleaned_token) < self.minimum_length)
             and (SEPARATOR in self.number.token)
@@ -47,7 +47,7 @@ class BaseValidator(Validator):
 
         return True
 
-    def validate_token_as_int(self) -> bool:
+    def validate_token_as_int(self: SelfBaseValidator) -> bool:
         try:
             int(self.number.token, self.number.numeral_system)
         except ValueError:
@@ -57,7 +57,7 @@ class BaseValidator(Validator):
 
 
 class NumberWithPrefixValidator(BaseValidator):
-    def validate(self):
+    def validate(self: SelfNumberWithPrefixValidator) -> bool:
         if not self.validate_token_as_int():
             return False
         if not self.validate_length():
