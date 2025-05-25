@@ -10,6 +10,8 @@ SelfBinaryClassifier = TypeVar('SelfBinaryClassifier', bound='BinaryClassifier')
 
 @final
 class BinaryClassifier(BaseClassifier):
+    """Classifier for binary numbers."""
+
     def __init__(
         self: SelfBinaryClassifier,
         token: TokenLikeStr,
@@ -17,6 +19,12 @@ class BinaryClassifier(BaseClassifier):
         self._token = token
 
     def classify(self: SelfBinaryClassifier) -> BinaryNumber | None:
+        """
+        Returns a binary number if it matches.
+
+        :return: Binary number
+        :rtype: BinaryNumber | None
+        """
         if self.token_lower.startswith(NumberPrefix.BINARY.value):
             return BinaryNumber(self.token_lower)
 
@@ -24,4 +32,10 @@ class BinaryClassifier(BaseClassifier):
 
     @property
     def token(self: SelfBinaryClassifier) -> TokenLikeStr:
+        """
+        Token string from `tokenize.TokenInfo` object.
+
+        :return: Token like string.
+        :rtype: TokenLikeStr
+        """
         return self._token
