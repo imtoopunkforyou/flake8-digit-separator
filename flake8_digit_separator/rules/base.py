@@ -7,6 +7,13 @@ SelfFDSRules = TypeVar('SelfFDSRules', bound='FDSRules')
 
 
 class FDSRules(enum.Enum):
+    """
+    Flake8-digits-separator rules.
+
+    When initializing an object, you must specify the rule number as the argument name.
+    The rule text and a valid example must be specified as the argument value.
+    """
+
     def __init__(
         self: SelfFDSRules,
         text: str,
@@ -26,8 +33,10 @@ class FDSRules(enum.Enum):
 
     @property
     def text(self: SelfFDSRules) -> str:
+        """Text of rule."""
         return self._text
 
     @property
     def example(self: SelfFDSRules) -> NumberWithSeparators:
+        """Valid example of rule."""
         return self._example
