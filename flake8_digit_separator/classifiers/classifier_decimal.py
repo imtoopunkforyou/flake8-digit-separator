@@ -20,6 +20,8 @@ class DecimalClassifier(BaseClassifier):
         if NumberDelimiter.DECIMAL.value in self.token:
             return DecimalNumber(self.token)
 
+        return None
+
     @property
     def token(self: SelfDecimalClassifier) -> TokenLikeStr:
         return self._token

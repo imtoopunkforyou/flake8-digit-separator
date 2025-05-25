@@ -16,9 +16,11 @@ class HexClassifier(BaseClassifier):
     ) -> None:
         self._token = token
 
-    def classify(self: SelfHexClassifier) -> HexNumber:
+    def classify(self: SelfHexClassifier) -> HexNumber | None:
         if self.token_lower.startswith(NumberPrefix.HEX.value):
             return HexNumber(self.token_lower)
+
+        return None
 
     @property
     def token(self: SelfHexClassifier) -> TokenLikeStr:

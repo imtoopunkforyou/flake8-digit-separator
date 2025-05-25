@@ -19,6 +19,8 @@ class ComplexClassifier(BaseClassifier):
         if 'j' in self.token_lower:
             return ComplexNumber(self.token_lower)
 
+        return None
+
     @property
     def token(self: SelfComplexClassifier) -> TokenLikeStr:
         return self._token

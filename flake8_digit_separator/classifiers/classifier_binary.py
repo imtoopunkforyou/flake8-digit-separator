@@ -20,6 +20,8 @@ class BinaryClassifier(BaseClassifier):
         if self.token_lower.startswith(NumberPrefix.BINARY.value):
             return BinaryNumber(self.token_lower)
 
+        return None
+
     @property
     def token(self: SelfBinaryClassifier) -> TokenLikeStr:
         return self._token

@@ -19,6 +19,8 @@ class ScientifiClassifier(BaseClassifier):
         if 'e' in self.token_lower:
             return ScientificNumber(self.token_lower)
 
+        return None
+
     @property
     def token(self: SelfScientifiClassifier) -> TokenLikeStr:
         return self._token

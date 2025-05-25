@@ -16,9 +16,11 @@ class OctalClassifier(BaseClassifier):
     ) -> None:
         self._token = token
 
-    def classify(self: SelfOctalClassifier) -> OctalNumber:
+    def classify(self: SelfOctalClassifier) -> OctalNumber | None:
         if self.token_lower.startswith(NumberPrefix.OCTAL.value):
             return OctalNumber(self.token_lower)
+
+        return None
 
     @property
     def token(self: SelfOctalClassifier) -> TokenLikeStr:
