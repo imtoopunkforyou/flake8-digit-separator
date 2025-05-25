@@ -11,32 +11,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: stub  # delete this
-        run: exit 0  # delete this
-      # - name: Checkout code
-      #   uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      # - name: Set up Python version
-      #   uses: actions/setup-python@v5
-      #   with:
-      #     python-version: "3.10"
+      - name: Set up Python version
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
 
-      # - name: Install poetry
-      #   run: |
-      #     curl -sSL 'https://install.python-poetry.org' | python
-      #     echo "$HOME/.poetry/bin" >> "$GITHUB_PATH"
+      - name: Install poetry
+        run: |
+          curl -sSL 'https://install.python-poetry.org' | python
+          echo "$HOME/.poetry/bin" >> "$GITHUB_PATH"
 
-      # - name: Install dependencies
-      #   run: |
-      #     poetry config virtualenvs.in-project false
-      #     poetry run pip install -U pip
-      #     poetry install --only lint
+      - name: Install dependencies
+        run: |
+          poetry config virtualenvs.in-project false
+          poetry run pip install -U pip
+          poetry install --only lint
       
-      # - name: Isort rules
-      #   run: poetry run isort --check ./flake8_digit_separator/ ./tests/
+      - name: Isort rules
+        run: poetry run isort --check ./flake8_digit_separator/ ./tests/
 
-      # - name: Flake8 rules
-      #   run: poetry run flake8 ./flake8_digit_separator/ ./tests/
+      - name: Flake8 rules
+        run: poetry run flake8 ./flake8_digit_separator/ ./tests/
 
-      # - name: Mypy rules
-      #   run: poetry run mypy ./flake8_digit_separator/
+      - name: Mypy rules
+        run: poetry run mypy ./flake8_digit_separator/
