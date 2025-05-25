@@ -6,7 +6,7 @@ SelfCleaner = TypeVar('SelfCleaner', bound='Cleaner')
 
 @final
 class Cleaner:
-    pattern: ClassVar[re.Pattern] = re.compile(r'[+\-_]')
+    pattern: ClassVar[re.Pattern[str]] = re.compile(r'[+\-_]')
 
     def __init__(self: SelfCleaner, text: str) -> None:
         self._text = text
