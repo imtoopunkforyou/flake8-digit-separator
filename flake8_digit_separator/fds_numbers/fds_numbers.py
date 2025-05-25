@@ -22,14 +22,14 @@ class IntNumber(FDSNumber):
 class HexNumber(NumberWithPrefix):
     numeral_system: NumeralSystem = NumeralSystem.HEX
     is_supported: bool = True
-    prefix: NumberPrefix = NumberPrefix.HEX.value
+    prefix: NumberPrefix = NumberPrefix.HEX
 
 
 @dataclass(frozen=True)
 class OctalNumber(NumberWithPrefix):
     numeral_system: NumeralSystem = NumeralSystem.OCTAL
     is_supported: bool = True
-    prefix: NumberPrefix = NumberPrefix.OCTAL.value
+    prefix: NumberPrefix = NumberPrefix.OCTAL
 
 
 @dataclass(frozen=True)
@@ -43,7 +43,7 @@ class DecimalNumber(NumberWithDelimiter):
 class BinaryNumber(NumberWithPrefix):
     numeral_system: NumeralSystem = NumeralSystem.BINARY
     is_supported: bool = True
-    prefix: NumberPrefix = NumberPrefix.BINARY.value
+    prefix: NumberPrefix = NumberPrefix.BINARY
 
 
 @dataclass(frozen=True)

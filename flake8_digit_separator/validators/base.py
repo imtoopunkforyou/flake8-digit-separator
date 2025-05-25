@@ -2,7 +2,11 @@ import re
 from abc import ABC, abstractmethod
 from typing import TypeVar
 
-from flake8_digit_separator.fds_numbers.base import FDSNumber
+from flake8_digit_separator.fds_numbers.base import (
+    FDSNumber,
+    NumberWithDelimiter,
+    NumberWithPrefix,
+)
 from flake8_digit_separator.validators.constants import SEPARATOR
 
 SelfValidator = TypeVar('SelfValidator', bound='Validator')
@@ -14,7 +18,7 @@ SelfNumberWithOutPrefixValidator = TypeVar('SelfNumberWithOutPrefixValidator', b
 class Validator(ABC):
     @property
     @abstractmethod
-    def number(self: SelfValidator) -> FDSNumber:
+    def number(self: SelfValidator) -> FDSNumber | NumberWithDelimiter | NumberWithPrefix:
         ...
 
     @property
@@ -62,7 +66,7 @@ class NumberWithPrefixValidator(BaseValidator):
             return False
         if not self.validate_length():
             return False
-        if not self.number.token.startswith(self.number.prefix):
+        if not self.number.token.startswith(self.number.prefix.value):
             return False
 
         if len(self.number.cleaned_token) >= self.minimum_length:
@@ -70,6 +74,10 @@ class NumberWithPrefixValidator(BaseValidator):
                 return False
 
         return True
+
+    @property
+    def number(self: SelfNumberWithPrefixValidator) -> NumberWithPrefix:
+        raise NotImplementedError('A number with a prefix must be specified.')
 
 
 class NumberWithOutPrefixValidator(BaseValidator):
