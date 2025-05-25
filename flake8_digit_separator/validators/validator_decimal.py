@@ -18,6 +18,17 @@ class DecimalValidator(NumberWithOutPrefixValidator):
         self._pattern = r'^\d{1,3}(?:_\d{3})+$'
 
     def validate(self: SelfDecimalValidator) -> bool:  # noqa: WPS231
+        """
+        Validating decimal numbers.
+
+        1. Check that we can convert the number to int
+        2. Divide the number into two parts by delimeter.
+        3. Check that part of number is less than the required minimum length and there is no separator.
+        4. Check part of number by pattern.
+
+        :return: `True` if all restrictions have been passed. Otherwise `False`.
+        :rtype: bool
+        """
         if not self.validate_token_as_int():
             return False
 
@@ -34,16 +45,35 @@ class DecimalValidator(NumberWithOutPrefixValidator):
 
     @property
     def pattern(self: SelfDecimalValidator) -> str:
+        """
+        The regular expression that will be validated.
+
+        :return: Regular expression.
+        :rtype: str
+        """
         return self._pattern
 
     @property
     def minimum_length(self: SelfDecimalValidator) -> int:
+        """
+        The minimum token length required to start validation.
+
+        :return: Minimum token length.
+        :rtype: int
+        """
         return self._minimum_length
 
     @property
     def number(self: SelfDecimalValidator) -> DecimalNumber:
+        """FDS decimal number object."""
         return self._number
 
     @property
     def error_message(self: SelfDecimalValidator) -> str:
+        """
+        The rule that the validator checked.
+
+        :return: FDS rule.
+        :rtype: str
+        """
         return DecimalFDSRules.FDS200.create_message()

@@ -20,6 +20,12 @@ SelfValidatorRegistry = TypeVar('SelfValidatorRegistry', bound='ValidatorRegistr
 
 @final
 class ValidatorRegistry:
+    """
+    Validator Registrator.
+
+    Matches validators and numbers.
+    """
+
     mapping: dict[type[FDSNumbersAlias], type[ValidatorsAlias]] = {
         IntNumber: IntValidator,
         HexNumber: HexValidator,
@@ -30,6 +36,17 @@ class ValidatorRegistry:
 
     @classmethod
     def get_validator(cls: type[SelfValidatorRegistry], number: FDSNumbersAlias) -> ValidatorsAlias:
+        """
+        Returns the required validator by number.
+
+        :param number: FDS number object received from the classifier.
+        :type number: FDSNumbersAlias
+
+        :raises ValueError: The required validator was not found.
+
+        :return: Required validator.
+        :rtype: ValidatorsAlias
+        """
         validator_cls: type[ValidatorsAlias] | None = cls.mapping.get(number.__class__)
         if not validator_cls:
             msg = 'No validator registered for {number}'

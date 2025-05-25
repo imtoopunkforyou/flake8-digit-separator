@@ -16,16 +16,35 @@ class OctalValidator(NumberWithPrefixValidator):
 
     @property
     def number(self: SelfOctalValidator) -> OctalNumber:
+        """FDS octal number object."""
         return self._number
 
     @property
     def minimum_length(self: SelfOctalValidator) -> int:
+        """
+        The minimum token length required to start validation.
+
+        :return: Minimum token length.
+        :rtype: int
+        """
         return self._minimum_length
 
     @property
     def pattern(self: SelfOctalValidator) -> str:
+        """
+        The regular expression that will be validated.
+
+        :return: Regular expression.
+        :rtype: str
+        """
         return self._pattern
 
     @property
     def error_message(self: SelfOctalValidator) -> str:
+        """
+        The rule that the validator checked.
+
+        :return: FDS rule.
+        :rtype: str
+        """
         return OctalFDSRules.FDS400.create_message()

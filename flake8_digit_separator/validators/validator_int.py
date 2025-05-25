@@ -17,10 +17,13 @@ class IntValidator(NumberWithOutPrefixValidator):
 
     def validate(self: SelfIntValidator) -> bool:
         """
-        Wrong: 100000, 10000_0, 1_0000, 10_00000
-        Correct: 1_000, 10_000, 100_000, 10, 100, 10_000_000
+        Validating int numbers.
 
-        :return: _description_
+        1. Check that we can convert the number to int
+        2. Check that number is less than the required minimum length and there is no separator.
+        3. Check number by pattern.
+
+        :return: `True` if all restrictions have been passed. Otherwise `False`.
         :rtype: bool
         """
         if not self.validate_token_as_int():
@@ -35,16 +38,35 @@ class IntValidator(NumberWithOutPrefixValidator):
 
     @property
     def pattern(self: SelfIntValidator) -> str:
+        """
+        The regular expression that will be validated.
+
+        :return: Regular expression.
+        :rtype: str
+        """
         return self._pattern
 
     @property
     def minimum_length(self: SelfIntValidator) -> int:
+        """
+        The minimum token length required to start validation.
+
+        :return: Minimum token length.
+        :rtype: int
+        """
         return self._minimum_length
 
     @property
     def number(self: SelfIntValidator) -> IntNumber:
+        """FDS int number object"""
         return self._number
 
     @property
     def error_message(self: SelfIntValidator) -> str:
+        """
+        The rule that the validator checked.
+
+        :return: FDS rule.
+        :rtype: str
+        """
         return IntFDSRules.FDS100.create_message()

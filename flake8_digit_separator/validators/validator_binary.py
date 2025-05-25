@@ -9,6 +9,7 @@ SelfBinaryValidator = TypeVar('SelfBinaryValidator', bound='BinaryValidator')
 
 @final
 class BinaryValidator(NumberWithPrefixValidator):
+    """Validator for binary numbers."""
     def __init__(self: SelfBinaryValidator, number: BinaryNumber) -> None:
         self._pattern = r'^[0-9a-f]{1,4}(?:_[0-9a-f]{4})+$'
         self._minimum_length = 5
@@ -16,16 +17,20 @@ class BinaryValidator(NumberWithPrefixValidator):
 
     @property
     def number(self: SelfBinaryValidator) -> BinaryNumber:
+        """FDS binary number"""
         return self._number
 
     @property
     def minimum_length(self: SelfBinaryValidator) -> int:
+        """The minimum token length required to start validation."""
         return self._minimum_length
 
     @property
     def pattern(self: SelfBinaryValidator) -> str:
+        """The regular expression that will be validated."""
         return self._pattern
 
     @property
     def error_message(self: SelfBinaryValidator) -> str:
+        """The rule that the validator checked."""
         return BinaryFDSRules.FDS300.create_message()
