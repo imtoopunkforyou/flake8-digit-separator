@@ -2,6 +2,7 @@ import re
 from numbers import Number
 from typing import final
 
+from flake8_digit_separator.rules.rules import IntFDSRules
 from flake8_digit_separator.validators.base import NumberWithOutPrefixValidator
 
 
@@ -31,17 +32,17 @@ class IntValidator(NumberWithOutPrefixValidator):
         return True
 
     @property
-    def pattern(self):
+    def pattern(self) -> str:
         return self._pattern
 
     @property
-    def minimum_length(self):
+    def minimum_length(self) -> int:
         return self._minimum_length
 
     @property
-    def number(self):
+    def number(self) -> Number:
         return self._number
 
     @property
-    def error_message(self):
-        return 'FDS100: INT'
+    def error_message(self) -> str:
+        return IntFDSRules.FDS100.create_message()

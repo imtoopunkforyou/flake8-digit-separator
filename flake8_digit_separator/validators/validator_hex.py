@@ -1,6 +1,7 @@
 from numbers import Number
 from typing import final
 
+from flake8_digit_separator.rules.rules import HexFDSRules
 from flake8_digit_separator.validators.base import NumberWithPrefixValidator
 
 
@@ -16,7 +17,7 @@ class HexValidator(NumberWithPrefixValidator):
         return self._number
 
     @property
-    def minimum_length(self):
+    def minimum_length(self) -> int:
         return self._minimum_length
 
     @property
@@ -24,5 +25,5 @@ class HexValidator(NumberWithPrefixValidator):
         return self._pattern
 
     @property
-    def error_message(self):
-        return 'FDS400: HEX'
+    def error_message(self) -> str:
+        return HexFDSRules.FDS500.create_message()

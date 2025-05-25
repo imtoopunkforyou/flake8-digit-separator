@@ -1,6 +1,7 @@
 from numbers import Number
 from typing import final
 
+from flake8_digit_separator.rules.rules import OctalFDSRules
 from flake8_digit_separator.validators.base import NumberWithPrefixValidator
 
 
@@ -16,13 +17,13 @@ class OctalValidator(NumberWithPrefixValidator):
         return self._number
 
     @property
-    def minimum_length(self):
+    def minimum_length(self) -> int:
         return self._minimum_length
 
     @property
-    def pattern(self):
+    def pattern(self) -> str:
         return self._pattern
 
     @property
-    def error_message(self):
-        return 'FDS200: OCT'
+    def error_message(self) -> str:
+        return OctalFDSRules.FDS400.create_message()

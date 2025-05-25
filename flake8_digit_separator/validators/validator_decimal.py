@@ -2,6 +2,7 @@ import re
 from numbers import Number
 from typing import final
 
+from flake8_digit_separator.rules.rules import DecimalFDSRules
 from flake8_digit_separator.transformations.cleaner import Cleaner
 from flake8_digit_separator.validators.base import NumberWithOutPrefixValidator
 from flake8_digit_separator.validators.constants import SEPARATOR
@@ -14,7 +15,7 @@ class DecimalValidator(NumberWithOutPrefixValidator):
         self._minimum_length = 4
         self._pattern = r'^\d{1,3}(?:_\d{3})+$'
 
-    def validate(self):  # noqa: WPS231
+    def validate(self) -> bool:  # noqa: WPS231
         if not self.validate_token_as_int():
             return False
 
@@ -30,17 +31,17 @@ class DecimalValidator(NumberWithOutPrefixValidator):
         return True
 
     @property
-    def pattern(self):
+    def pattern(self) -> str:
         return self._pattern
 
     @property
-    def minimum_length(self):
+    def minimum_length(self) -> str:
         return self._minimum_length
 
     @property
-    def number(self):
+    def number(self) -> str:
         return self._number
 
     @property
-    def error_message(self):
-        return 'FDS100: INT'
+    def error_message(self) -> str:
+        return DecimalFDSRules.FDS200.create_message()
