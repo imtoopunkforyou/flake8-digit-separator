@@ -14,12 +14,16 @@ from flake8_digit_separator.fds_numbers.enums import (
 
 @dataclass(frozen=True)
 class IntNumber(FDSNumber):
+    """Int number object."""
+
     numeral_system: NumeralSystem = NumeralSystem.DECIMAL
     is_supported: bool = True
 
 
 @dataclass(frozen=True)
 class HexNumber(NumberWithPrefix):
+    """Hex number object."""
+
     numeral_system: NumeralSystem = NumeralSystem.HEX
     is_supported: bool = True
     prefix: NumberPrefix = NumberPrefix.HEX
@@ -27,6 +31,8 @@ class HexNumber(NumberWithPrefix):
 
 @dataclass(frozen=True)
 class OctalNumber(NumberWithPrefix):
+    """Octal number object."""
+
     numeral_system: NumeralSystem = NumeralSystem.OCTAL
     is_supported: bool = True
     prefix: NumberPrefix = NumberPrefix.OCTAL
@@ -34,6 +40,8 @@ class OctalNumber(NumberWithPrefix):
 
 @dataclass(frozen=True)
 class DecimalNumber(NumberWithDelimiter):
+    """Decimal number object."""
+
     numeral_system: NumeralSystem = NumeralSystem.DECIMAL
     is_supported: bool = True
     delimiter: NumberDelimiter = NumberDelimiter.DECIMAL
@@ -41,6 +49,8 @@ class DecimalNumber(NumberWithDelimiter):
 
 @dataclass(frozen=True)
 class BinaryNumber(NumberWithPrefix):
+    """Binary number object."""
+
     numeral_system: NumeralSystem = NumeralSystem.BINARY
     is_supported: bool = True
     prefix: NumberPrefix = NumberPrefix.BINARY
@@ -48,11 +58,15 @@ class BinaryNumber(NumberWithPrefix):
 
 @dataclass(frozen=True)
 class ComplexNumber(FDSNumber):
+    """Complex number object."""
+
     numeral_system: NumeralSystem = NumeralSystem.DECIMAL
     is_supported: bool = False
 
 
 @dataclass(frozen=True)
 class ScientificNumber(FDSNumber):
+    """Scientific number object."""
+
     numeral_system: NumeralSystem = NumeralSystem.DECIMAL
     is_supported: bool = False

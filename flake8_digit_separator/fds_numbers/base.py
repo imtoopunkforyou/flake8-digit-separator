@@ -16,12 +16,23 @@ NumberTokenLikeStr: TypeAlias = str
 
 @dataclass(frozen=True)
 class FDSNumber:
+    """
+    Base number object.
+
+    Without inheritance and overriding, only suitable for `int`.
+    """
     token: NumberTokenLikeStr
     numeral_system: NumeralSystem
     is_supported: bool
 
     @property
     def cleaned_token(self: SelfFDSNumber) -> CleanedToken:
+        """
+        Return cleaned token.
+
+        :return: Token without `+`, `-` and `_`.
+        :rtype: CleanedToken
+        """
         cleaner = Cleaner(self.token)
 
         return cleaner.clean()
@@ -29,9 +40,13 @@ class FDSNumber:
 
 @dataclass(frozen=True)
 class NumberWithPrefix(FDSNumber):
+    """Number object for octal, hex and binary."""
+
     prefix: NumberPrefix
 
 
 @dataclass(frozen=True)
 class NumberWithDelimiter(FDSNumber):
+    """Number object for decimal."""
+
     delimiter: NumberDelimiter
