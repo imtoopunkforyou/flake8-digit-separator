@@ -8,5 +8,5 @@ class Error:
     message: str
     object_type: type[object]
 
-    def as_tuple(self):
+    def as_tuple(self) -> tuple[int, int, str, type[object]]:
         return astuple(self)

@@ -6,7 +6,7 @@ make:
 # === Dev ===
 lint:
 	poetry run flake8 ./flake8_digit_separator ./tests \
-	&& poetry run mypy ./flake8_digit_separator --no-pretty
+	&& poetry run mypy ./flake8_digit_separator
 pre-commit:
 	poetry run isort ./flake8_digit_separator ./tests \
 	&& make lint \
