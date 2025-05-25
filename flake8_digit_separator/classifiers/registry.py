@@ -26,6 +26,11 @@ ClassifiersAlias: TypeAlias = ClassifiersUnsupported | ClassifiersWithOutPrefixA
 
 @final
 class ClassifierRegistry:
+    """
+    Classifier Registrar.
+
+    Classification of numbers requires a deterministic order of classifiers.
+    """
     hex_classifier = HexClassifier
     octal_classifier = OctalClassifier
     binary_classifier = BinaryClassifier
@@ -36,6 +41,12 @@ class ClassifierRegistry:
 
     @classmethod
     def get_ordered_classifiers(cls: type[SelfClassifierRegistry]) -> tuple[type[ClassifiersAlias], ...]:
+        """
+        Generates an ordered tuple of classifiers.
+
+        :return: Ordered tuple of classifiers.
+        :rtype: tuple[type[ClassifiersAlias], ...]
+        """
         return (  # noqa: WPS227
             cls.hex_classifier,
             cls.octal_classifier,
