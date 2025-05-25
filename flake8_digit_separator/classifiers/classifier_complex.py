@@ -9,6 +9,8 @@ SelfComplexClassifier = TypeVar('SelfComplexClassifier', bound='ComplexClassifie
 
 @final
 class ComplexClassifier(BaseClassifier):
+    """Classifier for complex numbers."""
+
     def __init__(
         self: SelfComplexClassifier,
         token: TokenLikeStr,
@@ -16,6 +18,12 @@ class ComplexClassifier(BaseClassifier):
         self._token = token
 
     def classify(self: SelfComplexClassifier) -> ComplexNumber | None:
+        """
+        Returns a complex number if it matches.
+
+        :return: Complex number
+        :rtype: ComplexNumber | None
+        """
         if 'j' in self.token_lower:
             return ComplexNumber(self.token_lower)
 
@@ -23,4 +31,10 @@ class ComplexClassifier(BaseClassifier):
 
     @property
     def token(self: SelfComplexClassifier) -> TokenLikeStr:
+        """
+        Token string from `tokenize.TokenInfo` object.
+
+        :return: Token like string.
+        :rtype: TokenLikeStr
+        """
         return self._token
