@@ -14,6 +14,9 @@ from flake8_digit_separator.validators.validator_decimal import DecimalValidator
 from flake8_digit_separator.validators.validator_hex import HexValidator
 from flake8_digit_separator.validators.validator_int import IntValidator
 from flake8_digit_separator.validators.validator_octal import OctalValidator
+from typing import TypeVar
+
+SelfValidatorRegistry = TypeVar('SelfValidatorRegistry', bound='ValidatorRegistry')
 
 
 @final
@@ -27,7 +30,7 @@ class ValidatorRegistry:
     }
 
     @classmethod
-    def get_validator(cls, number: FDSNumber) -> Validator:
+    def get_validator(cls: type[SelfValidatorRegistry], number: FDSNumber) -> Validator:
         validator_cls = cls.mapping.get(number.__class__)
         if not validator_cls:
             msg = 'No validator registered for {number}'
