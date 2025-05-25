@@ -5,6 +5,8 @@ from flake8_digit_separator.types import ErrorMessage
 
 @dataclass(frozen=True)
 class Error:
+    """FDS rule violation with location."""
+
     line: int
     column: int
     message: str

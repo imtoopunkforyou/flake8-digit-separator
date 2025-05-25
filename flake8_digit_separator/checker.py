@@ -24,6 +24,17 @@ class Checker:
         self.file_tokens = file_tokens
 
     def run(self: SelfChecker) -> Iterator[ErrorMessage]:
+        """
+        Entry point and start of validation.
+
+        1. Check that the token is a number.
+        2. Classify the token.
+        3. Validate the token.
+        4. Display an error.
+
+        :yield: FDS rule that was broken.
+        :rtype: Iterator[ErrorMessage]
+        """
         for token in self.file_tokens:
             if token.type == tokenize.NUMBER:
                 error = self._process_number_token(token)
