@@ -1,32 +1,41 @@
 import ast
 import tokenize
+from typing import Iterator, TypeVar
 
 from flake8_digit_separator import __version__ as version
-from flake8_digit_separator.classifiers.base import Classifier
 from flake8_digit_separator.classifiers.registry import ClassifierRegistry
 from flake8_digit_separator.error import Error
-from flake8_digit_separator.fds_numbers.base import FDSNumber
+from flake8_digit_separator.types import ErrorMessage
 from flake8_digit_separator.validators.registry import ValidatorRegistry
+
+SelfChecker = TypeVar('SelfChecker', bound='Checker')
 
 
 class Checker:
     name = version.NAME
     version = version.VERSION
 
-    def __init__(self, tree: ast.AST, file_tokens: list[tokenize.TokenInfo]):
+    def __init__(
+        self: SelfChecker,
+        tree: ast.AST,
+        file_tokens: list[tokenize.TokenInfo],
+    ) -> None:
         self.file_tokens = file_tokens
 
-    def run(self):
+    def run(self: SelfChecker) -> Iterator[ErrorMessage]:
         for token in self.file_tokens:
             if token.type == tokenize.NUMBER:
                 error = self._process_number_token(token)
                 if error:
                     yield error.as_tuple()
 
-    def _process_number_token(self, token: tokenize.TokenInfo) -> Error | None:
-        classifiers: tuple[Classifier, ...] = ClassifierRegistry.get_ordered_classifiers()
+    def _process_number_token(
+        self: SelfChecker,
+        token: tokenize.TokenInfo,
+    ) -> Error | None:
+        classifiers = ClassifierRegistry.get_ordered_classifiers()
         for classifier in classifiers:
-            number: FDSNumber = classifier(token.string).classify()
+            number = classifier(token.string).classify()
             if number:
                 break
 

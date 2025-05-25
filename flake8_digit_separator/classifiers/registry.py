@@ -1,6 +1,5 @@
-from typing import TypeVar, final
+from typing import TypeAlias, TypeVar, final
 
-from flake8_digit_separator.classifiers.base import Classifier
 from flake8_digit_separator.classifiers.classifier_binary import (
     BinaryClassifier,
 )
@@ -19,6 +18,11 @@ from flake8_digit_separator.classifiers.classifier_scientific import (
 
 SelfClassifierRegistry = TypeVar('SelfClassifierRegistry', bound='ClassifierRegistry')
 
+ClassifiersWithPrefixAlias: TypeAlias = OctalClassifier | HexClassifier | BinaryClassifier
+ClassifiersWithOutPrefixAlias: TypeAlias = IntClassifier | DecimalClassifier
+ClassifiersUnsupported: TypeAlias = ScientifiClassifier | ComplexClassifier
+ClassifiersAlias: TypeAlias = ClassifiersUnsupported | ClassifiersWithOutPrefixAlias | ClassifiersWithPrefixAlias
+
 
 @final
 class ClassifierRegistry:
@@ -31,7 +35,7 @@ class ClassifierRegistry:
     int_classifier = IntClassifier
 
     @classmethod
-    def get_ordered_classifiers(cls: type[SelfClassifierRegistry]) -> tuple[type[Classifier], ...]:
+    def get_ordered_classifiers(cls: type[SelfClassifierRegistry]) -> tuple[type[ClassifiersAlias], ...]:
         return (  # noqa: WPS227
             cls.hex_classifier,
             cls.octal_classifier,
