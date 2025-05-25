@@ -49,7 +49,7 @@ class BaseValidator(Validator):
 
     def validate_token_as_int(self: SelfBaseValidator) -> bool:
         try:
-            int(self.number.token, self.number.numeral_system)
+            int(self.number.token, self.number.numeral_system.value)
         except ValueError:
             return False
 
