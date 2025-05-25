@@ -1,6 +1,6 @@
-from numbers import Number
 from typing import TypeVar, final
 
+from flake8_digit_separator.fds_numbers.fds_numbers import HexNumber
 from flake8_digit_separator.rules.rules import HexFDSRules
 from flake8_digit_separator.validators.base import NumberWithPrefixValidator
 
@@ -9,13 +9,13 @@ SelfHexValidator = TypeVar('SelfHexValidator', bound='HexValidator')
 
 @final
 class HexValidator(NumberWithPrefixValidator):
-    def __init__(self: SelfHexValidator, number: str) -> None:
+    def __init__(self: SelfHexValidator, number: HexNumber) -> None:
         self._pattern = r'^[0-9a-f]{1,4}(?:_[0-9a-f]{4})+$'
         self._minimum_length = 5
         self._number = number
 
     @property
-    def number(self: SelfHexValidator) -> Number:
+    def number(self: SelfHexValidator) -> HexNumber:
         return self._number
 
     @property

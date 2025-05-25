@@ -36,7 +36,7 @@ class OctalNumber(NumberWithPrefix):
 class DecimalNumber(NumberWithDelimiter):
     numeral_system: NumeralSystem = NumeralSystem.DECIMAL
     is_supported: bool = True
-    delimiter: NumberDelimiter = NumberDelimiter.DECIMAL.value
+    delimiter: NumberDelimiter = NumberDelimiter.DECIMAL
 
 
 @dataclass(frozen=True)
