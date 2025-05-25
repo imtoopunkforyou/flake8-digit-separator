@@ -10,6 +10,8 @@ SelfDecimalClassifier = TypeVar('SelfDecimalClassifier', bound='DecimalClassifie
 
 @final
 class DecimalClassifier(BaseClassifier):
+    """Classifier for decimal numbers."""
+
     def __init__(
         self: SelfDecimalClassifier,
         token: TokenLikeStr,
@@ -17,6 +19,12 @@ class DecimalClassifier(BaseClassifier):
         self._token = token
 
     def classify(self: SelfDecimalClassifier) -> DecimalNumber | None:
+        """
+        Returns a decimal number if it matches.
+
+        :return: Decimal number
+        :rtype: DecimalNumber | None
+        """
         if NumberDelimiter.DECIMAL.value in self.token:
             return DecimalNumber(self.token)
 
@@ -24,4 +32,10 @@ class DecimalClassifier(BaseClassifier):
 
     @property
     def token(self: SelfDecimalClassifier) -> TokenLikeStr:
+        """
+        Token string from `tokenize.TokenInfo` object.
+
+        :return: Token like string.
+        :rtype: TokenLikeStr
+        """
         return self._token
