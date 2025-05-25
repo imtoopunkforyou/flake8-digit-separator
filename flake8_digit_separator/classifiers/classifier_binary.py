@@ -1,4 +1,4 @@
-from typing import TypeVar
+from typing import TypeVar, final
 
 from flake8_digit_separator.classifiers.base import BaseClassifier
 from flake8_digit_separator.classifiers.types import TokenLikeStr
@@ -8,8 +8,12 @@ from flake8_digit_separator.fds_numbers.fds_numbers import BinaryNumber
 SelfBinaryClassifier = TypeVar('SelfBinaryClassifier', bound='BinaryClassifier')
 
 
+@final
 class BinaryClassifier(BaseClassifier):
-    def __init__(self: SelfBinaryClassifier, token: TokenLikeStr) -> None:
+    def __init__(
+        self: SelfBinaryClassifier,
+        token: TokenLikeStr,
+    ) -> None:
         self._token = token
 
     def classify(self: SelfBinaryClassifier) -> BinaryNumber | None:

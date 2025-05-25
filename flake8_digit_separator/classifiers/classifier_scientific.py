@@ -1,4 +1,4 @@
-from typing import TypeVar
+from typing import TypeVar, final
 
 from flake8_digit_separator.classifiers.base import BaseClassifier
 from flake8_digit_separator.classifiers.types import TokenLikeStr
@@ -7,8 +7,12 @@ from flake8_digit_separator.fds_numbers.fds_numbers import ScientificNumber
 SelfScientifiClassifier = TypeVar('SelfScientifiClassifier', bound='ScientifiClassifier')
 
 
+@final
 class ScientifiClassifier(BaseClassifier):
-    def __init__(self: SelfScientifiClassifier, token: TokenLikeStr) -> None:
+    def __init__(
+        self: SelfScientifiClassifier,
+        token: TokenLikeStr,
+    ) -> None:
         self._token = token
 
     def classify(self: SelfScientifiClassifier) -> ScientificNumber | None:
@@ -16,5 +20,5 @@ class ScientifiClassifier(BaseClassifier):
             return ScientificNumber(self.token_lower)
 
     @property
-    def token(self) -> TokenLikeStr:
+    def token(self: SelfScientifiClassifier) -> TokenLikeStr:
         return self._token

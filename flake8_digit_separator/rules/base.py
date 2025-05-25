@@ -25,9 +25,9 @@ class FDSRules(enum.Enum):
         )
 
     @property
-    def text(self: SelfFDSRules):
+    def text(self: SelfFDSRules) -> str:
         return self._text
 
     @property
-    def example(self: SelfFDSRules):
+    def example(self: SelfFDSRules) -> NumberWithSeparators:
         return self._example

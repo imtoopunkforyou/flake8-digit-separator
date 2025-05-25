@@ -5,6 +5,7 @@ from flake8_digit_separator.classifiers.types import TokenLikeStr
 from flake8_digit_separator.fds_numbers.base import FDSNumber
 
 SelfClassifier = TypeVar('SelfClassifier', bound='Classifier')
+SelfBaseClassifier = TypeVar('SelfBaseClassifier', bound='BaseClassifier')
 
 LowerTokenLikeStr: TypeAlias = str
 
@@ -27,5 +28,5 @@ class Classifier(ABC):
 
 class BaseClassifier(Classifier):
     @property
-    def token_lower(self) -> LowerTokenLikeStr:
+    def token_lower(self: SelfBaseClassifier) -> LowerTokenLikeStr:
         return self.token.lower()

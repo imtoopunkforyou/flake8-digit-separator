@@ -1,4 +1,4 @@
-from typing import TypeVar
+from typing import TypeVar, final
 
 from flake8_digit_separator.classifiers.base import BaseClassifier
 from flake8_digit_separator.classifiers.types import TokenLikeStr
@@ -8,8 +8,12 @@ from flake8_digit_separator.fds_numbers.fds_numbers import DecimalNumber
 SelfDecimalClassifier = TypeVar('SelfDecimalClassifier', bound='DecimalClassifier')
 
 
+@final
 class DecimalClassifier(BaseClassifier):
-    def __init__(self: SelfDecimalClassifier, token: TokenLikeStr) -> None:
+    def __init__(
+        self: SelfDecimalClassifier,
+        token: TokenLikeStr,
+    ) -> None:
         self._token = token
 
     def classify(self: SelfDecimalClassifier) -> DecimalNumber | None:
