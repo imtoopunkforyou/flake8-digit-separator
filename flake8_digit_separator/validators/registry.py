@@ -1,4 +1,4 @@
-from typing import TypeAlias, TypeVar, final
+from typing import TypeVar, final
 
 from flake8_digit_separator.fds_numbers.fds_numbers import (
     BinaryNumber,
@@ -7,6 +7,8 @@ from flake8_digit_separator.fds_numbers.fds_numbers import (
     IntNumber,
     OctalNumber,
 )
+from flake8_digit_separator.fds_numbers.types import FDSNumbersAlias
+from flake8_digit_separator.validators.types import ValidatorsAlias
 from flake8_digit_separator.validators.validator_binary import BinaryValidator
 from flake8_digit_separator.validators.validator_decimal import DecimalValidator
 from flake8_digit_separator.validators.validator_hex import HexValidator
@@ -14,14 +16,6 @@ from flake8_digit_separator.validators.validator_int import IntValidator
 from flake8_digit_separator.validators.validator_octal import OctalValidator
 
 SelfValidatorRegistry = TypeVar('SelfValidatorRegistry', bound='ValidatorRegistry')
-
-ValidatorsWithPrefixAlias: TypeAlias = HexValidator | OctalValidator | BinaryValidator
-ValidatorsWithOutPrefixAlias: TypeAlias = IntValidator | DecimalValidator
-ValidatorsAlias: TypeAlias = ValidatorsWithPrefixAlias | ValidatorsWithOutPrefixAlias
-
-FDSNumbersWithPrefixAlias: TypeAlias = HexNumber | OctalNumber | BinaryNumber
-FDSNumbersWithOutPrefixAlias: TypeAlias = IntNumber | DecimalNumber
-FDSNumbersAlias: TypeAlias = FDSNumbersWithOutPrefixAlias | FDSNumbersWithPrefixAlias
 
 
 @final
