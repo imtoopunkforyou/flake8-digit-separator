@@ -37,7 +37,7 @@ class DecimalValidator(NumberWithOutPrefixValidator):
         return self._pattern
 
     @property
-    def minimum_length(self: SelfDecimalValidator) -> str:
+    def minimum_length(self: SelfDecimalValidator) -> int:
         return self._minimum_length
 
     @property
