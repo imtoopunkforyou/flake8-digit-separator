@@ -10,6 +10,8 @@ SelfOctalClassifier = TypeVar('SelfOctalClassifier', bound='OctalClassifier')
 
 @final
 class OctalClassifier(BaseClassifier):
+    """Classifier for octal numbers."""
+
     def __init__(
         self: SelfOctalClassifier,
         token: TokenLikeStr,
@@ -17,6 +19,12 @@ class OctalClassifier(BaseClassifier):
         self._token = token
 
     def classify(self: SelfOctalClassifier) -> OctalNumber | None:
+        """
+        Returns a octal number if it matches.
+
+        :return: Octal number
+        :rtype: OctalNumber | None
+        """
         if self.token_lower.startswith(NumberPrefix.OCTAL.value):
             return OctalNumber(self.token_lower)
 
@@ -24,4 +32,10 @@ class OctalClassifier(BaseClassifier):
 
     @property
     def token(self: SelfOctalClassifier) -> TokenLikeStr:
+        """
+        Token string from `tokenize.TokenInfo` object.
+
+        :return: Token like string.
+        :rtype: TokenLikeStr
+        """
         return self._token

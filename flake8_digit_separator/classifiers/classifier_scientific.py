@@ -9,6 +9,8 @@ SelfScientifiClassifier = TypeVar('SelfScientifiClassifier', bound='ScientifiCla
 
 @final
 class ScientifiClassifier(BaseClassifier):
+    """Classifier for scientific numbers."""
+
     def __init__(
         self: SelfScientifiClassifier,
         token: TokenLikeStr,
@@ -16,6 +18,12 @@ class ScientifiClassifier(BaseClassifier):
         self._token = token
 
     def classify(self: SelfScientifiClassifier) -> ScientificNumber | None:
+        """
+        Returns a scientific number if it matches.
+
+        :return: Scientific number
+        :rtype: ScientificNumber | None
+        """
         if 'e' in self.token_lower:
             return ScientificNumber(self.token_lower)
 
@@ -23,4 +31,10 @@ class ScientifiClassifier(BaseClassifier):
 
     @property
     def token(self: SelfScientifiClassifier) -> TokenLikeStr:
+        """
+        Token string from `tokenize.TokenInfo` object.
+
+        :return: Token like string.
+        :rtype: TokenLikeStr
+        """
         return self._token

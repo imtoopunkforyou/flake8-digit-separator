@@ -10,6 +10,8 @@ SelfHexClassifier = TypeVar('SelfHexClassifier', bound='HexClassifier')
 
 @final
 class HexClassifier(BaseClassifier):
+    """Classifier for hex numbers."""
+
     def __init__(
         self: SelfHexClassifier,
         token: TokenLikeStr,
@@ -17,6 +19,12 @@ class HexClassifier(BaseClassifier):
         self._token = token
 
     def classify(self: SelfHexClassifier) -> HexNumber | None:
+        """
+        Returns a hex number if it matches.
+
+        :return: Hex number
+        :rtype: HexNumber | None
+        """
         if self.token_lower.startswith(NumberPrefix.HEX.value):
             return HexNumber(self.token_lower)
 
@@ -24,4 +32,10 @@ class HexClassifier(BaseClassifier):
 
     @property
     def token(self: SelfHexClassifier) -> TokenLikeStr:
+        """
+        Token string from `tokenize.TokenInfo` object.
+
+        :return: Token like string.
+        :rtype: TokenLikeStr
+        """
         return self._token
