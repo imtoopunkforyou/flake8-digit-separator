@@ -19,7 +19,7 @@ class BinaryValidator(NumberWithPrefixValidator):
         return self._number
 
     @property
-    def minimum_length(self: SelfBinaryValidator) -> str:
+    def minimum_length(self: SelfBinaryValidator) -> int:
         return self._minimum_length
 
     @property
