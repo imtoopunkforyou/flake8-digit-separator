@@ -27,7 +27,7 @@ class FDSRules(enum.Enum):
 
         return msg.format(
             rule=self.name,
-            text=self.value,
+            text=self.text,
             example=self.example,
         )
 
