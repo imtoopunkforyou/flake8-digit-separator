@@ -8,9 +8,12 @@
 [![license](https://img.shields.io/pypi/l/flake8-digit-separator.svg)](https://github.com/imtoopunkforyou/flake8-digit-separator/blob/main/LICENSE)  
 
 
-<div style="text-align:center">
-    <img src="https://raw.githubusercontent.com/imtoopunkforyou/flake8-digit-separator/main/.github/badge/logo.png" alt="logo" width="500">
-</div>
+<p align="center">
+  <a href="https://pypi.org/project/flake8-digit-separator">
+    <img src="https://raw.githubusercontent.com/imtoopunkforyou/flake8-digit-separator/main/.github/badge/logo.png"
+         alt="fds logo">
+  </a>
+</p>
 
 Correct placement of separators.
 
