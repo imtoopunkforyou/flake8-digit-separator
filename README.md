@@ -9,7 +9,7 @@
 
 
 <div style="text-align:center">
-    <img src="https://raw.githubusercontent.com/imtoopunkforyou/flake8-digit-separator/main/.github/badge/logo.png" alt="logo" width="200">
+    <img src="https://raw.githubusercontent.com/imtoopunkforyou/flake8-digit-separator/main/.github/badge/logo.png" alt="logo" width="500">
 </div>
 
 Correct placement of separators.
