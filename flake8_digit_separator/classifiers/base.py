@@ -5,7 +5,7 @@ from flake8_digit_separator.classifiers.types import TokenLikeStr
 from flake8_digit_separator.fds_numbers.fds_numbers import (
     BinaryNumber,
     ComplexNumber,
-    DecimalNumber,
+    FloatNumber,
     HexNumber,
     IntNumber,
     OctalNumber,
@@ -18,7 +18,7 @@ SelfBaseClassifier = TypeVar('SelfBaseClassifier', bound='BaseClassifier')
 LowerTokenLikeStr: TypeAlias = str
 FDSNumbersWithPrefixAlias: TypeAlias = OctalNumber | HexNumber | BinaryNumber
 FDSNumbersUnsupportedAlias: TypeAlias = ScientificNumber | ComplexNumber
-FDSNumbersAlias: TypeAlias = IntNumber | DecimalNumber | FDSNumbersUnsupportedAlias | FDSNumbersWithPrefixAlias
+FDSNumbersAlias: TypeAlias = IntNumber | FloatNumber | FDSNumbersUnsupportedAlias | FDSNumbersWithPrefixAlias
 
 
 class Classifier(ABC):

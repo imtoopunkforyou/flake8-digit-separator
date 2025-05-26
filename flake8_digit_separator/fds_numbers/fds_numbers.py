@@ -16,7 +16,7 @@ from flake8_digit_separator.fds_numbers.enums import (
 class IntNumber(FDSNumber):
     """Int number object."""
 
-    numeral_system: NumeralSystem = NumeralSystem.DECIMAL
+    numeral_system: NumeralSystem = NumeralSystem.FLOAT
     is_supported: bool = True
 
 
@@ -39,12 +39,12 @@ class OctalNumber(NumberWithPrefix):
 
 
 @dataclass(frozen=True)
-class DecimalNumber(NumberWithDelimiter):
-    """Decimal number object."""
+class FloatNumber(NumberWithDelimiter):
+    """Float number object."""
 
-    numeral_system: NumeralSystem = NumeralSystem.DECIMAL
+    numeral_system: NumeralSystem = NumeralSystem.FLOAT
     is_supported: bool = True
-    delimiter: NumberDelimiter = NumberDelimiter.DECIMAL
+    delimiter: NumberDelimiter = NumberDelimiter.FLOAT
 
 
 @dataclass(frozen=True)
@@ -60,7 +60,7 @@ class BinaryNumber(NumberWithPrefix):
 class ComplexNumber(FDSNumber):
     """Complex number object."""
 
-    numeral_system: NumeralSystem = NumeralSystem.DECIMAL
+    numeral_system: NumeralSystem = NumeralSystem.FLOAT
     is_supported: bool = False
 
 
@@ -68,5 +68,5 @@ class ComplexNumber(FDSNumber):
 class ScientificNumber(FDSNumber):
     """Scientific number object."""
 
-    numeral_system: NumeralSystem = NumeralSystem.DECIMAL
+    numeral_system: NumeralSystem = NumeralSystem.FLOAT
     is_supported: bool = False

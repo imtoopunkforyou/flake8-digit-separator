@@ -1,19 +1,19 @@
 from typing import TypeVar, final
 
-from flake8_digit_separator.fds_numbers.fds_numbers import DecimalNumber
-from flake8_digit_separator.rules.rules import DecimalFDSRules
+from flake8_digit_separator.fds_numbers.fds_numbers import FloatNumber
+from flake8_digit_separator.rules.rules import FloatFDSRules
 from flake8_digit_separator.validators.base import BaseValidator
 
-SelfDecimalValidator = TypeVar('SelfDecimalValidator', bound='DecimalValidator')
+SelfFloatValidator = TypeVar('SelfFloatValidator', bound='FloatValidator')
 
 
 @final
-class DecimalValidator(BaseValidator):
-    def __init__(self: SelfDecimalValidator, number: DecimalNumber) -> None:
+class FloatValidator(BaseValidator):
+    def __init__(self: SelfFloatValidator, number: FloatNumber) -> None:
         self._number = number
         self._pattern = r'^[+-]?(?:(?!0_)\d{1,3}(?:_\d{3})*\.\d{1,3}(?:_\d{3})*|\.\d{1,3}(?:_\d{3})*)$'
 
-    def validate(self: SelfDecimalValidator) -> bool:
+    def validate(self: SelfFloatValidator) -> bool:
         """
         Validates number token.
 
@@ -32,7 +32,7 @@ class DecimalValidator(BaseValidator):
         return True
 
     @property
-    def pattern(self: SelfDecimalValidator) -> str:
+    def pattern(self: SelfFloatValidator) -> str:
         """
         The regular expression that will be validated.
 
@@ -42,16 +42,16 @@ class DecimalValidator(BaseValidator):
         return self._pattern
 
     @property
-    def number(self: SelfDecimalValidator) -> DecimalNumber:
+    def number(self: SelfFloatValidator) -> FloatNumber:
         """FDS decimal number object."""
         return self._number
 
     @property
-    def error_message(self: SelfDecimalValidator) -> str:
+    def error_message(self: SelfFloatValidator) -> str:
         """
         The rule that the validator checked.
 
         :return: FDS rule.
         :rtype: str
         """
-        return DecimalFDSRules.FDS200.create_message()
+        return FloatFDSRules.FDS200.create_message()

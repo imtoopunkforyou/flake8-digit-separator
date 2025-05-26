@@ -34,6 +34,6 @@ class NumberWithPrefix(FDSNumber):
 
 @dataclass(frozen=True)
 class NumberWithDelimiter(FDSNumber):
-    """Number object for decimal."""
+    """Number object for float."""
 
     delimiter: NumberDelimiter

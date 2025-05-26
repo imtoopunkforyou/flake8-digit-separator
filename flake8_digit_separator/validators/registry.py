@@ -2,7 +2,7 @@ from typing import TypeVar, final
 
 from flake8_digit_separator.fds_numbers.fds_numbers import (
     BinaryNumber,
-    DecimalNumber,
+    FloatNumber,
     HexNumber,
     IntNumber,
     OctalNumber,
@@ -10,7 +10,7 @@ from flake8_digit_separator.fds_numbers.fds_numbers import (
 from flake8_digit_separator.fds_numbers.types import FDSNumbersAlias
 from flake8_digit_separator.validators.types import ValidatorsAlias
 from flake8_digit_separator.validators.validator_binary import BinaryValidator
-from flake8_digit_separator.validators.validator_decimal import DecimalValidator
+from flake8_digit_separator.validators.validator_float import FloatValidator
 from flake8_digit_separator.validators.validator_hex import HexValidator
 from flake8_digit_separator.validators.validator_int import IntValidator
 from flake8_digit_separator.validators.validator_octal import OctalValidator
@@ -31,7 +31,7 @@ class ValidatorRegistry:
         HexNumber: HexValidator,
         OctalNumber: OctalValidator,
         BinaryNumber: BinaryValidator,
-        DecimalNumber: DecimalValidator,
+        FloatNumber: FloatValidator,
     }
 
     @classmethod

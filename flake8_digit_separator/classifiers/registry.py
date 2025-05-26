@@ -6,9 +6,7 @@ from flake8_digit_separator.classifiers.classifier_binary import (
 from flake8_digit_separator.classifiers.classifier_complex import (
     ComplexClassifier,
 )
-from flake8_digit_separator.classifiers.classifier_decimal import (
-    DecimalClassifier,
-)
+from flake8_digit_separator.classifiers.classifier_float import FloatClassifier
 from flake8_digit_separator.classifiers.classifier_hex import HexClassifier
 from flake8_digit_separator.classifiers.classifier_int import IntClassifier
 from flake8_digit_separator.classifiers.classifier_octal import OctalClassifier
@@ -19,7 +17,7 @@ from flake8_digit_separator.classifiers.classifier_scientific import (
 SelfClassifierRegistry = TypeVar('SelfClassifierRegistry', bound='ClassifierRegistry')
 
 ClassifiersWithPrefixAlias: TypeAlias = OctalClassifier | HexClassifier | BinaryClassifier
-ClassifiersWithOutPrefixAlias: TypeAlias = IntClassifier | DecimalClassifier
+ClassifiersWithOutPrefixAlias: TypeAlias = IntClassifier | FloatClassifier
 ClassifiersUnsupported: TypeAlias = ScientifiClassifier | ComplexClassifier
 ClassifiersAlias: TypeAlias = ClassifiersUnsupported | ClassifiersWithOutPrefixAlias | ClassifiersWithPrefixAlias
 
@@ -36,7 +34,7 @@ class ClassifierRegistry:
     binary_classifier = BinaryClassifier
     complex_classifier = ComplexClassifier
     scientific_classifier = ScientifiClassifier
-    decimal_classifier = DecimalClassifier
+    float_classifier = FloatClassifier
     int_classifier = IntClassifier
 
     @classmethod
@@ -53,6 +51,6 @@ class ClassifierRegistry:
             cls.binary_classifier,
             cls.complex_classifier,
             cls.scientific_classifier,
-            cls.decimal_classifier,
+            cls.float_classifier,
             cls.int_classifier,
         )

@@ -7,8 +7,8 @@ class IntFDSRules(FDSRules):
     FDS100 = 'Group by 3s from right', '10_000'
 
 
-class DecimalFDSRules(FDSRules):
-    """FDS rules for decimal"""
+class FloatFDSRules(FDSRules):
+    """FDS rules for float"""
 
     FDS200 = 'Group by 3s from right', '10_000.1_234'
 

@@ -7,7 +7,7 @@ class NumeralSystem(enum.Enum):
 
     BINARY = 2
     OCTAL = 8
-    DECIMAL = 10
+    FLOAT = 10
     HEX = 16
 
 
@@ -27,4 +27,4 @@ class NumberPrefix(enum.Enum):
 class NumberDelimiter(enum.Enum):
     """Supported number delimeters."""
 
-    DECIMAL = '.'
+    FLOAT = '.'
