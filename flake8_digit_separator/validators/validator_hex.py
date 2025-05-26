@@ -1,4 +1,3 @@
-import re
 from typing import TypeVar, final
 
 from flake8_digit_separator.fds_numbers.fds_numbers import HexNumber
@@ -18,7 +17,7 @@ class HexValidator(BaseValidator):
         if not self.validate_token_as_int():
             return False
 
-        if not re.fullmatch(self.pattern, self.number.token):
+        if not self.validate_token_by_pattern():
             return False
 
         return True

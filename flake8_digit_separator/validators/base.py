@@ -1,3 +1,4 @@
+import re
 from abc import ABC, abstractmethod
 from typing import TypeVar
 
@@ -60,6 +61,15 @@ class BaseValidator(Validator):
 
     Specific validators should be inherited from this class
     """
+
+    def validate_token_by_pattern(self: SelfBaseValidator) -> bool:
+        """
+        Token validation by pattern.
+
+        :return: `True` if token matches pattern. Otherwise `False`.
+        :rtype: bool
+        """
+        return bool(re.fullmatch(self.pattern, self.number.token))
 
     def validate_token_as_int(self: SelfBaseValidator) -> bool:
         """
