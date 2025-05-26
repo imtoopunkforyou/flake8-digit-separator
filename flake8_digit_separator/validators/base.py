@@ -1,6 +1,6 @@
 import re
 from abc import ABC, abstractmethod
-from typing import TypeVar
+from typing import NoReturn, TypeVar
 
 from flake8_digit_separator.fds_numbers.base import (
     FDSNumber,
@@ -13,6 +13,7 @@ SelfValidator = TypeVar('SelfValidator', bound='Validator')
 SelfBaseValidator = TypeVar('SelfBaseValidator', bound='BaseValidator')
 SelfNumberWithPrefixValidator = TypeVar('SelfNumberWithPrefixValidator', bound='NumberWithPrefixValidator')
 SelfNumberWithOutPrefixValidator = TypeVar('SelfNumberWithOutPrefixValidator', bound='NumberWithOutPrefixValidator')
+SelfBaseDecimalValidator = TypeVar('SelfBaseDecimalValidator', bound='BaseDecimalValidator')
 
 
 class Validator(ABC):
@@ -144,3 +145,24 @@ class NumberWithOutPrefixValidator(BaseValidator):
 
     Specific validators for numbers without prefix should be inherited from this class.
     """
+
+
+class BaseDecimalValidator(NumberWithOutPrefixValidator):
+    """Base validator for decimal numbers."""
+
+    def validate_token_as_float(self: SelfBaseDecimalValidator) -> bool:
+        """
+        Attempt to convert token to float.
+
+        :return: `True` if operation is success. Otherwise `False`.
+        :rtype: bool
+        """
+        try:
+            float(self.number.token)
+        except ValueError:
+            return False
+
+        return True
+
+    def validate_token_as_int(self: SelfBaseDecimalValidator) -> NoReturn:
+        raise TypeError('Token cannot be converted to `int`."')

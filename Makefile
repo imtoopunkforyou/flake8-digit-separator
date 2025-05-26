@@ -18,7 +18,7 @@ test:
 py:
 	poetry run python
 fds:
-	poetry run flake8 --select FDS ./
+	poetry run flake8 --select FDS ./flake8_digit_separator
 
 # === Aliases ===
 pc: pre-commit

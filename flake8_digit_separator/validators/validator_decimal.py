@@ -4,14 +4,14 @@ from typing import TypeVar, final
 from flake8_digit_separator.fds_numbers.fds_numbers import DecimalNumber
 from flake8_digit_separator.rules.rules import DecimalFDSRules
 from flake8_digit_separator.transformations.cleaner import Cleaner
-from flake8_digit_separator.validators.base import NumberWithOutPrefixValidator
+from flake8_digit_separator.validators.base import BaseDecimalValidator
 from flake8_digit_separator.validators.constants import SEPARATOR
 
 SelfDecimalValidator = TypeVar('SelfDecimalValidator', bound='DecimalValidator')
 
 
 @final
-class DecimalValidator(NumberWithOutPrefixValidator):
+class DecimalValidator(BaseDecimalValidator):
     def __init__(self: SelfDecimalValidator, number: DecimalNumber) -> None:
         self._number = number
         self._minimum_length = 4
@@ -21,7 +21,7 @@ class DecimalValidator(NumberWithOutPrefixValidator):
         """
         Validating decimal numbers.
 
-        1. Check that we can convert the number to int
+        1. Check that we can convert the number to float.
         2. Divide the number into two parts by delimeter.
         3. Check that part of number is less than the required minimum length and there is no separator.
         4. Check part of number by pattern.
@@ -29,11 +29,12 @@ class DecimalValidator(NumberWithOutPrefixValidator):
         :return: `True` if all restrictions have been passed. Otherwise `False`.
         :rtype: bool
         """
-        if not self.validate_token_as_int():
+        if not self.validate_token_as_float():
             return False
 
         parts: list[str] = self.number.token.split(self.number.delimiter.value)
-        for part in parts:
+        non_empty_parts = (part for part in parts if part)
+        for part in non_empty_parts:
             cleaned_part = Cleaner(part).clean()
             if len(cleaned_part) >= 4:
                 if not re.fullmatch(self.pattern, part):
