@@ -5,7 +5,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry]
 name = "flake8-digit-separator"
 version = "0.0.8"
-description = "PEP 515 – Underscores in Numeric Literals"
+description = "Correct placement of separators"
 authors = [
     "Timur Valiev <cptchunk@yandex.ru>",
 ]
