@@ -6,7 +6,6 @@ from flake8_digit_separator.fds_numbers.enums import (
     NumberPrefix,
     NumeralSystem,
 )
-from flake8_digit_separator.transformations.cleaner import Cleaner
 
 SelfFDSNumber = TypeVar('SelfFDSNumber', bound='FDSNumber')
 
@@ -24,18 +23,6 @@ class FDSNumber:
     token: NumberTokenLikeStr
     numeral_system: NumeralSystem
     is_supported: bool
-
-    @property
-    def cleaned_token(self: SelfFDSNumber) -> CleanedToken:
-        """
-        Return cleaned token.
-
-        :return: Token without `+`, `-` and `_`.
-        :rtype: CleanedToken
-        """
-        cleaner = Cleaner(self.token)
-
-        return cleaner.clean()
 
 
 @dataclass(frozen=True)
