@@ -3,44 +3,27 @@ from typing import TypeVar, final
 
 from flake8_digit_separator.fds_numbers.fds_numbers import DecimalNumber
 from flake8_digit_separator.rules.rules import DecimalFDSRules
-from flake8_digit_separator.transformations.cleaner import Cleaner
-from flake8_digit_separator.validators.base import BaseDecimalValidator
-from flake8_digit_separator.validators.constants import SEPARATOR
+from flake8_digit_separator.validators.base import BaseValidator
 
 SelfDecimalValidator = TypeVar('SelfDecimalValidator', bound='DecimalValidator')
 
 
 @final
-class DecimalValidator(BaseDecimalValidator):
+class DecimalValidator(BaseValidator):
     def __init__(self: SelfDecimalValidator, number: DecimalNumber) -> None:
         self._number = number
-        self._minimum_length = 4
-        self._pattern = r'^\d{1,3}(?:_\d{3})+$'
+        self._pattern = r'^[+-]?(?:(?!0_)\d{1,3}(?:_\d{3})*\.\d{1,3}(?:_\d{3})*|\.\d{1,3}(?:_\d{3})*)$'
 
-    def validate(self: SelfDecimalValidator) -> bool:  # noqa: WPS231
+    def validate(self: SelfDecimalValidator) -> bool:
         """
         Validating decimal numbers.
 
-        1. Check that we can convert the number to float.
-        2. Divide the number into two parts by delimeter.
-        3. Check that part of number is less than the required minimum length and there is no separator.
-        4. Check part of number by pattern.
-
-        :return: `True` if all restrictions have been passed. Otherwise `False`.
-        :rtype: bool
         """
         if not self.validate_token_as_float():
             return False
 
-        parts: list[str] = self.number.token.split(self.number.delimiter.value)
-        non_empty_parts = (part for part in parts if part)
-        for part in non_empty_parts:
-            cleaned_part = Cleaner(part).clean()
-            if len(cleaned_part) >= 4:
-                if not re.fullmatch(self.pattern, part):
-                    return False
-            elif len(cleaned_part) < 4 and SEPARATOR in part:
-                return False
+        if not re.fullmatch(self.pattern, self.number.token):
+            return False
 
         return True
 
@@ -53,16 +36,6 @@ class DecimalValidator(BaseDecimalValidator):
         :rtype: str
         """
         return self._pattern
-
-    @property
-    def minimum_length(self: SelfDecimalValidator) -> int:
-        """
-        The minimum token length required to start validation.
-
-        :return: Minimum token length.
-        :rtype: int
-        """
-        return self._minimum_length
 
     @property
     def number(self: SelfDecimalValidator) -> DecimalNumber:

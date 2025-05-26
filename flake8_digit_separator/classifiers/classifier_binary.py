@@ -25,7 +25,7 @@ class BinaryClassifier(BaseClassifier):
         :return: Binary number
         :rtype: BinaryNumber | None
         """
-        if self.token_lower.startswith(NumberPrefix.BINARY.value):
+        if self.token_lower.startswith(NumberPrefix.BINARY.get_value_without_separator()):
             return BinaryNumber(self.token_lower)
 
         return None

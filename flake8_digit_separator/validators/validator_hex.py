@@ -1,28 +1,32 @@
+import re
 from typing import TypeVar, final
 
 from flake8_digit_separator.fds_numbers.fds_numbers import HexNumber
 from flake8_digit_separator.rules.rules import HexFDSRules
-from flake8_digit_separator.validators.base import NumberWithPrefixValidator
+from flake8_digit_separator.validators.base import BaseValidator
 
 SelfHexValidator = TypeVar('SelfHexValidator', bound='HexValidator')
 
 
 @final
-class HexValidator(NumberWithPrefixValidator):
+class HexValidator(BaseValidator):
     def __init__(self: SelfHexValidator, number: HexNumber) -> None:
-        self._pattern = r'^[0-9a-f]{1,4}(?:_[0-9a-f]{4})+$'
-        self._minimum_length = 5
+        self._pattern = r'^[+-]?0[xX]_[0-9a-fA-F]{1,4}(?:_[0-9a-fA-F]{4})*$'
         self._number = number
+
+    def validate(self: SelfHexValidator) -> bool:
+        if not self.validate_token_as_int():
+            return False
+
+        if not re.fullmatch(self.pattern, self.number.token):
+            return False
+
+        return True
 
     @property
     def number(self: SelfHexValidator) -> HexNumber:
         """FDS hex number object."""
         return self._number
-
-    @property
-    def minimum_length(self: SelfHexValidator) -> int:
-        """The minimum token length required to start validation."""
-        return self._minimum_length
 
     @property
     def pattern(self: SelfHexValidator) -> str:

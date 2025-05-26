@@ -25,7 +25,7 @@ class OctalClassifier(BaseClassifier):
         :return: Octal number
         :rtype: OctalNumber | None
         """
-        if self.token_lower.startswith(NumberPrefix.OCTAL.value):
+        if self.token_lower.startswith(NumberPrefix.OCTAL.get_value_without_separator()):
             return OctalNumber(self.token_lower)
 
         return None

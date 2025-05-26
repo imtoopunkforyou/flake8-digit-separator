@@ -25,7 +25,7 @@ class HexClassifier(BaseClassifier):
         :return: Hex number
         :rtype: HexNumber | None
         """
-        if self.token_lower.startswith(NumberPrefix.HEX.value):
+        if self.token_lower.startswith(NumberPrefix.HEX.get_value_without_separator()):
             return HexNumber(self.token_lower)
 
         return None

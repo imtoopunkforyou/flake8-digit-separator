@@ -1,33 +1,32 @@
+import re
 from typing import TypeVar, final
 
 from flake8_digit_separator.fds_numbers.fds_numbers import OctalNumber
 from flake8_digit_separator.rules.rules import OctalFDSRules
-from flake8_digit_separator.validators.base import NumberWithPrefixValidator
+from flake8_digit_separator.validators.base import BaseValidator
 
 SelfOctalValidator = TypeVar('SelfOctalValidator', bound='OctalValidator')
 
 
 @final
-class OctalValidator(NumberWithPrefixValidator):
+class OctalValidator(BaseValidator):
     def __init__(self: SelfOctalValidator, number: OctalNumber):
         self._number = number
-        self._pattern = r'^\d{1,3}(?:_\d{3})+$'
-        self._minimum_length = 4
+        self._pattern = r'^[+-]?0[oO]_[0-7]{1,3}(_[0-7]{3})*$'
+
+    def validate(self: SelfOctalValidator) -> bool:
+        if not self.validate_token_as_int():
+            return False
+
+        if not re.fullmatch(self.pattern, self.number.token):
+            return False
+
+        return True
 
     @property
     def number(self: SelfOctalValidator) -> OctalNumber:
         """FDS octal number object."""
         return self._number
-
-    @property
-    def minimum_length(self: SelfOctalValidator) -> int:
-        """
-        The minimum token length required to start validation.
-
-        :return: Minimum token length.
-        :rtype: int
-        """
-        return self._minimum_length
 
     @property
     def pattern(self: SelfOctalValidator) -> str:

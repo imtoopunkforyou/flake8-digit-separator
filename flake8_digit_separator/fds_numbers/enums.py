@@ -19,6 +19,9 @@ class NumberPrefix(enum.Enum):
     OCTAL = '0o_'
     HEX = '0x_'
 
+    def get_value_without_separator(self) -> str:
+        return self.value[:-1]
+
 
 @enum.unique
 class NumberDelimiter(enum.Enum):
