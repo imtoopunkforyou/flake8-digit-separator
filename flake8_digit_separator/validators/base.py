@@ -72,22 +72,6 @@ class Validator(ABC):
 class BaseValidator(Validator):
     """Base validator."""
 
-    def validate_length(self: SelfBaseValidator) -> bool:
-        """
-        Check for minimum token length.
-
-        :return: `True` if the minimum length is less than specified and there is no separator.
-                 Otherwise `False`.
-        :rtype: bool
-        """
-        if (
-            (len(self.number.cleaned_token) < self.minimum_length)
-            and (SEPARATOR in self.number.token)
-        ):
-            return False
-
-        return True
-
     def validate_token_as_int(self: SelfBaseValidator) -> bool:
         """
         Attempt to convert token to int.
@@ -109,6 +93,7 @@ class NumberWithPrefixValidator(BaseValidator):
 
     Specific validators for numbers with prefix should be inherited from this class.
     """
+
     def validate(self: SelfNumberWithPrefixValidator) -> bool:
         """
         Validating numbers with a prefix.
@@ -120,14 +105,12 @@ class NumberWithPrefixValidator(BaseValidator):
         :return: `True` if all restrictions have been passed. Otherwise `False`.
         :rtype: bool
         """
-        if not self.validate_length():
-            return False
         if not self.validate_token_as_int():
             return False
         if not self.number.token.startswith(self.number.prefix.value):
             return False
 
-        if len(self.number.cleaned_token) >= self.minimum_length:
+        if len(self.number.cleaned_token[3:]) >= self.minimum_length:
             if not re.fullmatch(self.pattern, self.number.token[3:]):
                 return False
 
@@ -145,6 +128,22 @@ class NumberWithOutPrefixValidator(BaseValidator):
 
     Specific validators for numbers without prefix should be inherited from this class.
     """
+
+    def validate_length(self: SelfBaseValidator) -> bool:
+        """
+        Check for minimum token length.
+
+        :return: `True` if the minimum length is less than specified and there is no separator.
+                 Otherwise `False`.
+        :rtype: bool
+        """
+        if (
+            (len(self.number.cleaned_token) < self.minimum_length)
+            and (SEPARATOR in self.number.token)
+        ):
+            return False
+
+        return True
 
 
 class BaseDecimalValidator(NumberWithOutPrefixValidator):
