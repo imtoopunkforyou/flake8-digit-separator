@@ -14,6 +14,15 @@ class OctalValidator(BaseValidator):
         self._pattern = r'^[+-]?0[oO]_[0-7]{1,3}(_[0-7]{3})*$'
 
     def validate(self: SelfOctalValidator) -> bool:
+        """
+        Validates number token.
+
+        1. Check that it can be converted to int.
+        2. Check for pattern compliance.
+
+        :return: `True` if all steps are completed. Otherwise `False`.
+        :rtype: bool
+        """
         if not self.validate_token_as_int():
             return False
 

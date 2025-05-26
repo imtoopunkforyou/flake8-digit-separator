@@ -10,11 +10,21 @@ SelfBinaryValidator = TypeVar('SelfBinaryValidator', bound='BinaryValidator')
 @final
 class BinaryValidator(BaseValidator):
     """Validator for binary numbers."""
+
     def __init__(self: SelfBinaryValidator, number: BinaryNumber) -> None:
         self._pattern = r'^[+-]?0[bB]_([01]{1,4}(_[01]{4})*)$'
         self._number = number
 
     def validate(self: SelfBinaryValidator) -> bool:
+        """
+        Validates number token.
+
+        1. Check that it can be converted to int.
+        2. Check for pattern compliance.
+
+        :return: `True` if all steps are completed. Otherwise `False`.
+        :rtype: bool
+        """
         if not self.validate_token_as_int():
             return False
         if not self.validate_token_by_pattern():

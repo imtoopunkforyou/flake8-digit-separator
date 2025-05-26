@@ -15,8 +15,13 @@ class IntValidator(BaseValidator):
 
     def validate(self: SelfIntValidator) -> bool:
         """
-        Validating int numbers.
+        Validates number token.
 
+        1. Check that it can be converted to int.
+        2. Check for pattern compliance.
+
+        :return: `True` if all steps are completed. Otherwise `False`.
+        :rtype: bool
         """
         if not self.validate_token_as_int():
             return False
