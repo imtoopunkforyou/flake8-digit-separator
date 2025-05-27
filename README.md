@@ -49,13 +49,13 @@ flake8 . --select FDS
 ## Rules
 [PEP515](https://peps.python.org/pep-0515/) allows separators, but does not impose any restrictions on their position in a number (except that a number should not start/end with a separator and there should not be two separators in a row). To introduce more rigor and beauty into the code, we have written a few simple rules that we suggest following.
 
-| Rule   | Number  | Description                              | Correct         | Wrong        |
-|--------|---------|------------------------------------------|-----------------|--------------|
-| FDS100 | integer | Group by 3s from right                   | 10_000          | 10_0         |
-| FDS200 | float   | Group by 3s from right                   | 10_000.1_234    | 10_0.123_4   |
-| FDS300 | binary  | Group by 4s from right after prefix `0b` | 0b_1101_1001    | 0b_110_11    |
-| FDS400 | octal   | Group by 3s from right after prefix `0o` | 0o_12_134_155   | 0o_1_23_45   |
-| FDS500 | hex     | Group by 4s from right after prefix `0x` | 0x_CAFE_F00D    | 0x_CAFEF0_0D |
+| Rule   | Number  | Description                              | Correct       | Wrong       |
+|--------|---------|------------------------------------------|---------------|-------------|
+| FDS100 | integer | Group by 3s from right                   | 10_000        | 10_0        |
+| FDS200 | float   | Group by 3s from right                   | 10_000.1_234  | 1_0_0.123_4 |
+| FDS300 | binary  | Group by 4s from right after prefix `0b` | 0b_1101_1001  | 0b110_11    |
+| FDS400 | octal   | Group by 3s from right after prefix `0o` | 0o_12_134_155 | 0o1_23_45   |
+| FDS500 | hex     | Group by 4s from right after prefix `0x` | 0x_CAFE_F00D  | 0xCAFEF0_0D |
 
 ## License
 [FDS](https://github.com/imtoopunkforyou/flake8-digit-separator) is released under the MIT License. See the bundled [LICENSE](https://github.com/imtoopunkforyou/flake8-digit-separator/blob/main/LICENSE) file for details.
