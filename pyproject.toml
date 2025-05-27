@@ -16,7 +16,20 @@ homepage = "https://github.com/imtoopunkforyou/flake8-digit-separator"
 
 keywords = [
   "flake8",
-  "TODO",
+  "linter",
+  "PEP515",
+  "separator",
+  "code-style",
+  "python-linter",
+  "linting",
+  "code-standards",
+  "code-quality",
+  "flake8-plugin",
+  "flake8-formatter",
+  "code-checker",
+  "numbers",
+  "digits",
+  "FDS",
 ]
 
 
