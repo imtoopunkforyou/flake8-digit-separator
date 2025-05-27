@@ -28,7 +28,7 @@ A set of [rules](https://github.com/imtoopunkforyou/flake8-digit-separator?tab=r
 correct_int = 10_000
 correct_float = 10_000.1_234
 correct_binary = 0b_1101_1001
-correct_octal = 0o_12_134_155
+correct_octal = 0o_134_155
 correct_hex = 0x_CAFE_F00D
 ```
 
