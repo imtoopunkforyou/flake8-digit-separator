@@ -18,11 +18,19 @@
 <p align="center">
   <a href="https://pypi.org/project/flake8-digit-separator">
     <img src="https://raw.githubusercontent.com/imtoopunkforyou/flake8-digit-separator/main/.github/badge/logo.png"
-         alt="fds logo">
+         alt="FDS logo">
   </a>
 </p>
 
-Correct placement of separators.
+A set of [rules](https://github.com/imtoopunkforyou/flake8-digit-separator?tab=readme-ov-file#rules) on top of the capabilities provided by [PEP515](https://peps.python.org/pep-0515/).
+
+```python
+correct_int = 10_000
+correct_float = 10_000.1_234
+correct_binary = 0b_1101_1001
+correct_octal = 0o_12_134_155
+correct_hex = 0x_CAFE_F00D
+```
 
 ## Installation
 ```bash
