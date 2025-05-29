@@ -20,6 +20,7 @@ class FDSNumber:
 
     Without inheritance and overriding, only suitable for `int`.
     """
+
     token: NumberTokenLikeStr
     numeral_system: NumeralSystem
     is_supported: bool

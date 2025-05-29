@@ -18,7 +18,7 @@ class FDSRules(enum.Enum):
         self: SelfFDSRules,
         text: str,
         example: NumberWithSeparators,
-    ):
+    ) -> None:
         self._text = text
         self._example = example
 

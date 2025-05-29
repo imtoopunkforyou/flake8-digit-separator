@@ -9,6 +9,8 @@ SelfHexValidator = TypeVar('SelfHexValidator', bound='HexValidator')
 
 @final
 class HexValidator(BaseValidator):
+    """Validator for hex numbers."""
+
     def __init__(self: SelfHexValidator, number: HexNumber) -> None:
         self._pattern = r'^[+-]?0[xX]_[0-9a-fA-F]{1,4}(?:_[0-9a-fA-F]{4})*$'
         self._number = number

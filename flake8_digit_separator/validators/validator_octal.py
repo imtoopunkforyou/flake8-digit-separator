@@ -9,6 +9,8 @@ SelfOctalValidator = TypeVar('SelfOctalValidator', bound='OctalValidator')
 
 @final
 class OctalValidator(BaseValidator):
+    """Validator for octal numbers."""
+
     def __init__(self: SelfOctalValidator, number: OctalNumber):
         self._number = number
         self._pattern = r'^[+-]?0[oO]_[0-7]{1,3}(_[0-7]{3})*$'

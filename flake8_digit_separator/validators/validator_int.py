@@ -9,6 +9,8 @@ SelfIntValidator = TypeVar('SelfIntValidator', bound='IntValidator')
 
 @final
 class IntValidator(BaseValidator):
+    """Validator for int numbers."""
+
     def __init__(self: SelfIntValidator, number: IntNumber) -> None:
         self._number = number
         self._pattern = r'^[+-]?(?!0_)\d{1,3}(?:_\d{3})*$'

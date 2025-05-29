@@ -9,6 +9,8 @@ SelfFloatValidator = TypeVar('SelfFloatValidator', bound='FloatValidator')
 
 @final
 class FloatValidator(BaseValidator):
+    """Validator for float numbers."""
+
     def __init__(self: SelfFloatValidator, number: FloatNumber) -> None:
         self._number = number
         self._pattern = r'^[+-]?(?:(?!0_)\d{1,3}(?:_\d{3})*\.\d{1,3}(?:_\d{3})*|\.\d{1,3}(?:_\d{3})*)$'

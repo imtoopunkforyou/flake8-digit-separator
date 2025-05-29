@@ -29,6 +29,7 @@ class ClassifierRegistry:
 
     Classification of numbers requires a deterministic order of classifiers.
     """
+
     hex_classifier = HexClassifier
     octal_classifier = OctalClassifier
     binary_classifier = BinaryClassifier
