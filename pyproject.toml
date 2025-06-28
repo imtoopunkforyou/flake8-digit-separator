@@ -12,6 +12,16 @@ authors = [
 license = "MIT"
 readme = "README.md"
 
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Programming Language :: Python :: 3",
+  "Framework :: Flake8",
+  "License :: OSI Approved :: MIT License",
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Typing :: Typed",
+]
+
 homepage = "https://github.com/imtoopunkforyou/flake8-digit-separator"
 
 keywords = [
