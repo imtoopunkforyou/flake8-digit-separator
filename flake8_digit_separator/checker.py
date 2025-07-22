@@ -74,6 +74,7 @@ class Checker:
 
     def _classify(self, token: tokenize.TokenInfo) -> FDSNumbersAlias | None:
         classifiers = ClassifierRegistry.get_ordered_classifiers()
+        number = None
         for classifier in classifiers:
             number = classifier(token.string).classify()
             if number:
