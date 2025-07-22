@@ -15,8 +15,7 @@ NumberTokenLikeStr: TypeAlias = str
 
 @dataclass(frozen=True)
 class FDSNumber:
-    """
-    Base number object.
+    """Base number object.
 
     Without inheritance and overriding, only suitable for `int`.
     """

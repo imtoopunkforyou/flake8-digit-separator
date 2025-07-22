@@ -13,14 +13,13 @@ class HexClassifier(BaseClassifier):
     """Classifier for hex numbers."""
 
     def __init__(
-        self: SelfHexClassifier,
+        self,
         token: TokenLikeStr,
     ) -> None:
         self._token = token
 
-    def classify(self: SelfHexClassifier) -> HexNumber | None:
-        """
-        Returns a hex number if it matches.
+    def classify(self) -> HexNumber | None:
+        """Returns a hex number if it matches.
 
         :return: Hex number
         :rtype: HexNumber | None
@@ -31,9 +30,8 @@ class HexClassifier(BaseClassifier):
         return None
 
     @property
-    def token(self: SelfHexClassifier) -> TokenLikeStr:
-        """
-        Token string from `tokenize.TokenInfo` object.
+    def token(self) -> TokenLikeStr:
+        """Token string from `tokenize.TokenInfo` object.
 
         :return: Token like string.
         :rtype: TokenLikeStr

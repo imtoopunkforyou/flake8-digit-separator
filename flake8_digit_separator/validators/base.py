@@ -18,8 +18,7 @@ class Validator(ABC):
     @property
     @abstractmethod
     def number(self: SelfValidator) -> FDSNumber | NumberWithDelimiter | NumberWithPrefix:
-        """
-        Number object obtained from classifier.
+        """Number object obtained from classifier.
 
         :return: FDSNumber obj.
         :rtype: FDSNumber | NumberWithDelimiter | NumberWithPrefix
@@ -28,8 +27,7 @@ class Validator(ABC):
     @property
     @abstractmethod
     def pattern(self: SelfValidator) -> str:
-        """
-        The regular expression that will be validated.
+        """The regular expression that will be validated.
 
         :return: Regular expression.
         :rtype: str
@@ -37,8 +35,7 @@ class Validator(ABC):
 
     @abstractmethod
     def validate(self: SelfValidator) -> bool:
-        """
-        Validation logic.
+        """Validation logic.
 
         :return: `True` if validation is success. Otherwise `False`.
         :rtype: bool
@@ -47,8 +44,7 @@ class Validator(ABC):
     @property
     @abstractmethod
     def error_message(self: SelfValidator) -> str:
-        """
-        The rule that the validator checked.
+        """The rule that the validator checked.
 
         :return: FDS rule.
         :rtype: str
@@ -56,24 +52,21 @@ class Validator(ABC):
 
 
 class BaseValidator(Validator):
-    """
-    Base validator.
+    """Base validator.
 
     Specific validators should be inherited from this class
     """
 
-    def validate_token_by_pattern(self: SelfBaseValidator) -> bool:
-        """
-        Token validation by pattern.
+    def validate_token_by_pattern(self) -> bool:
+        """Token validation by pattern.
 
         :return: `True` if token matches pattern. Otherwise `False`.
         :rtype: bool
         """
         return bool(re.fullmatch(self.pattern, self.number.token))
 
-    def validate_token_as_int(self: SelfBaseValidator) -> bool:
-        """
-        Attempt to convert token to int.
+    def validate_token_as_int(self) -> bool:
+        """Attempt to convert token to int.
 
         :return: `True` if operation is success. Otherwise `False`.
         :rtype: bool
@@ -85,9 +78,8 @@ class BaseValidator(Validator):
 
         return True
 
-    def validate_token_as_float(self: SelfBaseValidator) -> bool:
-        """
-        Attempt to convert token to float.
+    def validate_token_as_float(self) -> bool:
+        """Attempt to convert token to float.
 
         :return: `True` if operation is success. Otherwise `False`.
         :rtype: bool

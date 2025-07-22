@@ -12,14 +12,13 @@ class ComplexClassifier(BaseClassifier):
     """Classifier for complex numbers."""
 
     def __init__(
-        self: SelfComplexClassifier,
+        self,
         token: TokenLikeStr,
     ) -> None:
         self._token = token
 
-    def classify(self: SelfComplexClassifier) -> ComplexNumber | None:
-        """
-        Returns a complex number if it matches.
+    def classify(self) -> ComplexNumber | None:
+        """Returns a complex number if it matches.
 
         :return: Complex number
         :rtype: ComplexNumber | None
@@ -30,9 +29,8 @@ class ComplexClassifier(BaseClassifier):
         return None
 
     @property
-    def token(self: SelfComplexClassifier) -> TokenLikeStr:
-        """
-        Token string from `tokenize.TokenInfo` object.
+    def token(self) -> TokenLikeStr:
+        """Token string from `tokenize.TokenInfo` object.
 
         :return: Token like string.
         :rtype: TokenLikeStr

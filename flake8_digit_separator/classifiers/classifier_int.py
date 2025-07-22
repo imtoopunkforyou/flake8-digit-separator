@@ -12,14 +12,13 @@ class IntClassifier(BaseClassifier):
     """Classifier for int numbers."""
 
     def __init__(
-        self: SelfIntClassifier,
+        self,
         token: TokenLikeStr,
     ) -> None:
         self._token = token
 
-    def classify(self: SelfIntClassifier) -> IntNumber:
-        """
-        Returns a int number if it matches.
+    def classify(self) -> IntNumber:
+        """Returns a int number if it matches.
 
         :return: Int number
         :rtype: IntNumber
@@ -27,9 +26,8 @@ class IntClassifier(BaseClassifier):
         return IntNumber(self.token)
 
     @property
-    def token(self: SelfIntClassifier) -> TokenLikeStr:
-        """
-        Token string from `tokenize.TokenInfo` object.
+    def token(self) -> TokenLikeStr:
+        """Token string from `tokenize.TokenInfo` object.
 
         :return: Token like string.
         :rtype: TokenLikeStr

@@ -12,14 +12,13 @@ class ScientifiClassifier(BaseClassifier):
     """Classifier for scientific numbers."""
 
     def __init__(
-        self: SelfScientifiClassifier,
+        self,
         token: TokenLikeStr,
     ) -> None:
         self._token = token
 
-    def classify(self: SelfScientifiClassifier) -> ScientificNumber | None:
-        """
-        Returns a scientific number if it matches.
+    def classify(self) -> ScientificNumber | None:
+        """Returns a scientific number if it matches.
 
         :return: Scientific number
         :rtype: ScientificNumber | None
@@ -30,9 +29,8 @@ class ScientifiClassifier(BaseClassifier):
         return None
 
     @property
-    def token(self: SelfScientifiClassifier) -> TokenLikeStr:
-        """
-        Token string from `tokenize.TokenInfo` object.
+    def token(self) -> TokenLikeStr:
+        """Token string from `tokenize.TokenInfo` object.
 
         :return: Token like string.
         :rtype: TokenLikeStr

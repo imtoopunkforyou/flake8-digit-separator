@@ -13,14 +13,13 @@ class OctalClassifier(BaseClassifier):
     """Classifier for octal numbers."""
 
     def __init__(
-        self: SelfOctalClassifier,
+        self,
         token: TokenLikeStr,
     ) -> None:
         self._token = token
 
-    def classify(self: SelfOctalClassifier) -> OctalNumber | None:
-        """
-        Returns a octal number if it matches.
+    def classify(self) -> OctalNumber | None:
+        """Returns a octal number if it matches.
 
         :return: Octal number
         :rtype: OctalNumber | None
@@ -31,9 +30,8 @@ class OctalClassifier(BaseClassifier):
         return None
 
     @property
-    def token(self: SelfOctalClassifier) -> TokenLikeStr:
-        """
-        Token string from `tokenize.TokenInfo` object.
+    def token(self) -> TokenLikeStr:
+        """Token string from `tokenize.TokenInfo` object.
 
         :return: Token like string.
         :rtype: TokenLikeStr

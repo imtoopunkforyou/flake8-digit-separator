@@ -1,6 +1,7 @@
 import ast
 import tokenize
-from typing import Iterator, TypeVar
+from collections.abc import Iterator
+from typing import TypeVar
 
 from flake8_digit_separator import __version__ as version
 from flake8_digit_separator.classifiers.registry import ClassifierRegistry
@@ -13,19 +14,26 @@ SelfChecker = TypeVar('SelfChecker', bound='Checker')
 
 
 class Checker:
+    """Flake8 plugin checker for digit separator violations in numeric literals.
+
+    This checker processes Python source code tokens to identify numeric literals
+    and validates that they follow proper digit separator conventions. It classifies
+    different types of numbers (integers, floats, binary, hex, octal, etc.) and
+    applies appropriate validation rules to ensure consistent formatting.
+    """
+
     name = version.NAME
     version = version.VERSION
 
     def __init__(
-        self: SelfChecker,
-        tree: ast.AST,
+        self,
+        tree: ast.AST,  # noqa: ARG002
         file_tokens: list[tokenize.TokenInfo],
     ) -> None:
         self.file_tokens = file_tokens
 
-    def run(self: SelfChecker) -> Iterator[ErrorMessage]:
-        """
-        Entry point and start of validation.
+    def run(self) -> Iterator[ErrorMessage]:
+        """Entry point and start of validation.
 
         1. Check that the token is a number.
         2. Classify the token.
@@ -42,7 +50,7 @@ class Checker:
                     yield error.as_tuple()
 
     def _process_number_token(
-        self: SelfChecker,
+        self,
         token: tokenize.TokenInfo,
     ) -> Error | None:
         number = self._classify(token)
@@ -64,7 +72,7 @@ class Checker:
 
         return None
 
-    def _classify(self: SelfChecker, token: tokenize.TokenInfo) -> FDSNumbersAlias | None:
+    def _classify(self, token: tokenize.TokenInfo) -> FDSNumbersAlias | None:
         classifiers = ClassifierRegistry.get_ordered_classifiers()
         for classifier in classifiers:
             number = classifier(token.string).classify()
