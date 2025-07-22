@@ -27,8 +27,7 @@ class Classifier(ABC):
     @property
     @abstractmethod
     def token(self: SelfClassifier) -> TokenLikeStr:
-        """
-        Token string from `tokenize.TokenInfo` object.
+        """Token string from `tokenize.TokenInfo` object.
 
         :return: Token like string.
         :rtype: TokenLikeStr
@@ -37,8 +36,7 @@ class Classifier(ABC):
     @property
     @abstractmethod
     def token_lower(self: SelfClassifier) -> LowerTokenLikeStr:
-        """
-        Token string from `tokenize.TokenInfo` object in lower case.
+        """Token string from `tokenize.TokenInfo` object in lower case.
 
         :return: Token like string in lower case.
         :rtype: LowerTokenLikeStr
@@ -46,8 +44,7 @@ class Classifier(ABC):
 
     @abstractmethod
     def classify(self: SelfClassifier) -> FDSNumbersAlias | None:
-        """
-        Determines what specific number the token refers to.
+        """Determines what specific number the token refers to.
 
         :return: Object of a specific number.
         :rtype: FDSNumbersAlias | None
@@ -55,16 +52,14 @@ class Classifier(ABC):
 
 
 class BaseClassifier(Classifier):
-    """
-    Base classifier class.
+    """Base classifier class.
 
     Specific classifiers should be inherited from this class.
     """
 
     @property
-    def token_lower(self: SelfBaseClassifier) -> LowerTokenLikeStr:
-        """
-        Token string from `tokenize.TokenInfo` object in lower case.
+    def token_lower(self) -> LowerTokenLikeStr:
+        """Token string from `tokenize.TokenInfo` object in lower case.
 
         :return: Token like string in lower case.
         :rtype: LowerTokenLikeStr

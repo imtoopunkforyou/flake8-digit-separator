@@ -13,14 +13,13 @@ class BinaryClassifier(BaseClassifier):
     """Classifier for binary numbers."""
 
     def __init__(
-        self: SelfBinaryClassifier,
+        self,
         token: TokenLikeStr,
     ) -> None:
         self._token = token
 
-    def classify(self: SelfBinaryClassifier) -> BinaryNumber | None:
-        """
-        Returns a binary number if it matches.
+    def classify(self) -> BinaryNumber | None:
+        """Returns a binary number if it matches.
 
         :return: Binary number
         :rtype: BinaryNumber | None
@@ -31,9 +30,8 @@ class BinaryClassifier(BaseClassifier):
         return None
 
     @property
-    def token(self: SelfBinaryClassifier) -> TokenLikeStr:
-        """
-        Token string from `tokenize.TokenInfo` object.
+    def token(self) -> TokenLikeStr:
+        """Token string from `tokenize.TokenInfo` object.
 
         :return: Token like string.
         :rtype: TokenLikeStr

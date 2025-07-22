@@ -56,6 +56,7 @@ wemake-python-styleguide = "^1.1.0"
 mypy = "^1.15.0"
 isort = "^6.0.1"
 darglint = "^1.8.1"
+ruff = "^0.12.4"
 
 
 [tool.poetry.group.tests.dependencies]

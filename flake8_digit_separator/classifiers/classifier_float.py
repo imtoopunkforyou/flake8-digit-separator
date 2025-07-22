@@ -13,14 +13,13 @@ class FloatClassifier(BaseClassifier):
     """Classifier for float numbers."""
 
     def __init__(
-        self: SelfFloatClassifier,
+        self,
         token: TokenLikeStr,
     ) -> None:
         self._token = token
 
-    def classify(self: SelfFloatClassifier) -> FloatNumber | None:
-        """
-        Returns a float number if it matches.
+    def classify(self) -> FloatNumber | None:
+        """Returns a float number if it matches.
 
         :return: Float number
         :rtype: FloatNumber | None
@@ -31,9 +30,8 @@ class FloatClassifier(BaseClassifier):
         return None
 
     @property
-    def token(self: SelfFloatClassifier) -> TokenLikeStr:
-        """
-        Token string from `tokenize.TokenInfo` object.
+    def token(self) -> TokenLikeStr:
+        """Token string from `tokenize.TokenInfo` object.
 
         :return: Token like string.
         :rtype: TokenLikeStr

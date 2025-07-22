@@ -20,6 +20,14 @@ class NumberPrefix(enum.Enum):
     HEX = '0x_'
 
     def get_value_without_separator(self) -> str:
+        """Get the number prefix without the trailing underscore separator.
+
+        Removes the last character (underscore) from the prefix value to get
+        the clean prefix format (e.g. '0b_' becomes '0b').
+
+        :return: Number prefix without the trailing underscore
+        :rtype: str
+        """
         return self.value[:-1]
 
 

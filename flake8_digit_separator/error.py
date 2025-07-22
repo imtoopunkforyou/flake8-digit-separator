@@ -13,4 +13,10 @@ class Error:
     object_type: type[object]
 
     def as_tuple(self) -> ErrorMessage:
+        """Convert the Error object to a tuple format expected by flake8.
+
+        :return: A tuple containing (line, column, message, object_type) that
+                 flake8 can process as an error report.
+        :rtype: ErrorMessage
+        """
         return astuple(self)

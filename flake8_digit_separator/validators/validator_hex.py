@@ -11,13 +11,12 @@ SelfHexValidator = TypeVar('SelfHexValidator', bound='HexValidator')
 class HexValidator(BaseValidator):
     """Validator for hex numbers."""
 
-    def __init__(self: SelfHexValidator, number: HexNumber) -> None:
+    def __init__(self, number: HexNumber) -> None:
         self._pattern = r'^[+-]?0[xX]_[0-9a-fA-F]{1,4}(?:_[0-9a-fA-F]{4})*$'
         self._number = number
 
-    def validate(self: SelfHexValidator) -> bool:
-        """
-        Validates number token.
+    def validate(self) -> bool:
+        """Validates number token.
 
         1. Check that it can be converted to int.
         2. Check for pattern compliance.
@@ -25,28 +24,21 @@ class HexValidator(BaseValidator):
         :return: `True` if all steps are completed. Otherwise `False`.
         :rtype: bool
         """
-        if not self.validate_token_as_int():
-            return False
-
-        if not self.validate_token_by_pattern():
-            return False
-
-        return True
+        return self.validate_token_as_int() and self.validate_token_by_pattern()
 
     @property
-    def number(self: SelfHexValidator) -> HexNumber:
+    def number(self) -> HexNumber:
         """FDS hex number object."""
         return self._number
 
     @property
-    def pattern(self: SelfHexValidator) -> str:
+    def pattern(self) -> str:
         """The regular expression that will be validated."""
         return self._pattern
 
     @property
-    def error_message(self: SelfHexValidator) -> str:
-        """
-        The rule that the validator checked.
+    def error_message(self) -> str:
+        """The rule that the validator checked.
 
         :return: FDS rule.
         :rtype: str

@@ -9,17 +9,13 @@ from tests.e2e.cases import wrong
 @pytest.fixture
 def path_to_wrong_cases():
     base_dir = Path(__file__).parent
-    wrong_cases = base_dir / 'cases' / 'wrong.py'
-
-    return wrong_cases
+    return base_dir / 'cases' / 'wrong.py'
 
 
 @pytest.fixture
 def path_to_correct_cases():
     base_dir = Path(__file__).parent
-    correct_cases = base_dir / 'cases' / 'correct.py'
-
-    return correct_cases
+    return base_dir / 'cases' / 'correct.py'
 
 
 @pytest.fixture
@@ -47,10 +43,10 @@ def fds500_wrong_count():
     return len(wrong.FDS500)
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture
 def flake8_stdout():
     def _flake8_stdout(file_path):
-        process = subprocess.Popen(
+        process = subprocess.Popen(  # noqa: S603
             (
                 'flake8',
                 '--isolated',

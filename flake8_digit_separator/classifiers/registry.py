@@ -24,8 +24,7 @@ ClassifiersAlias: TypeAlias = ClassifiersUnsupported | ClassifiersWithOutPrefixA
 
 @final
 class ClassifierRegistry:
-    """
-    Classifier Registrator.
+    """Classifier Registrator.
 
     Classification of numbers requires a deterministic order of classifiers.
     """
@@ -39,9 +38,8 @@ class ClassifierRegistry:
     int_classifier = IntClassifier
 
     @classmethod
-    def get_ordered_classifiers(cls: type[SelfClassifierRegistry]) -> tuple[type[ClassifiersAlias], ...]:
-        """
-        Generates an ordered tuple of classifiers.
+    def get_ordered_classifiers(cls) -> tuple[type[ClassifiersAlias], ...]:
+        """Generates an ordered tuple of classifiers.
 
         :return: Ordered tuple of classifiers.
         :rtype: tuple[type[ClassifiersAlias], ...]

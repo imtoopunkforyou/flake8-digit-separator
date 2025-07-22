@@ -1,4 +1,4 @@
-from typing import TypeVar, final
+from typing import ClassVar, TypeVar, final
 
 from flake8_digit_separator.fds_numbers.fds_numbers import (
     BinaryNumber,
@@ -8,7 +8,7 @@ from flake8_digit_separator.fds_numbers.fds_numbers import (
     OctalNumber,
 )
 from flake8_digit_separator.fds_numbers.types import FDSNumbersAlias
-from flake8_digit_separator.validators.types import ValidatorsAlias
+from flake8_digit_separator.validators.types import ValidatorsAlias, ValidatorsMapping
 from flake8_digit_separator.validators.validator_binary import BinaryValidator
 from flake8_digit_separator.validators.validator_float import FloatValidator
 from flake8_digit_separator.validators.validator_hex import HexValidator
@@ -20,13 +20,12 @@ SelfValidatorRegistry = TypeVar('SelfValidatorRegistry', bound='ValidatorRegistr
 
 @final
 class ValidatorRegistry:
-    """
-    Validator Registrator.
+    """Validator Registrator.
 
     Matches validators and numbers.
     """
 
-    mapping: dict[type[FDSNumbersAlias], type[ValidatorsAlias]] = {
+    mapping: ClassVar[ValidatorsMapping] = {
         IntNumber: IntValidator,
         HexNumber: HexValidator,
         OctalNumber: OctalValidator,
@@ -35,9 +34,8 @@ class ValidatorRegistry:
     }
 
     @classmethod
-    def get_validator(cls: type[SelfValidatorRegistry], number: FDSNumbersAlias) -> ValidatorsAlias:
-        """
-        Returns the required validator by number.
+    def get_validator(cls, number: FDSNumbersAlias) -> ValidatorsAlias:
+        """Returns the required validator by number.
 
         :param number: FDS number object received from the classifier.
         :type number: FDSNumbersAlias
@@ -53,7 +51,7 @@ class ValidatorRegistry:
             raise ValueError(
                 msg.format(
                     number=number.__class__,
-                )
+                ),
             )
 
         return validator_cls(number)  # type: ignore [arg-type]
