@@ -7,7 +7,6 @@ from flake8_digit_separator.validators.registry import ValidatorRegistry
 
 class UnknownNumber(FDSNumber):
     """Custom number class that has no registered validator."""
-    pass
 
 
 class TestValidatorRegistry:
@@ -17,11 +16,11 @@ class TestValidatorRegistry:
         """Test that get_validator raises ValueError for unknown number types."""
         # Create an unknown number type
         unknown_number = UnknownNumber(
-            token="123",
+            token='123',  # noqa: S106
             numeral_system=NumeralSystem.FLOAT,
-            is_supported=True
+            is_supported=True,
         )
-        
+
         # Should raise ValueError when no validator is registered
-        with pytest.raises(ValueError, match="No validator registered for"):
-            ValidatorRegistry.get_validator(unknown_number) 
+        with pytest.raises(ValueError, match='No validator registered for'):
+            ValidatorRegistry.get_validator(unknown_number)
