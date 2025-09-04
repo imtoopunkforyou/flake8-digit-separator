@@ -32,7 +32,7 @@ pip install flake8-digit-separator
 
 ## Usage
 ```bash
-flake8 . --select FDS
+flake8 ./ --select FDS
 ```
 
 ## Rules
