@@ -30,10 +30,6 @@ correct_hex = 0x_CAFE_F00D
 pip install flake8-digit-separator
 ```
 
-### Dependencies
-- `python (>=3.10, <4.0)`
-- `flake8 (>=7.1, <8.0)`
-
 ## Usage
 ```bash
 flake8 . --select FDS
