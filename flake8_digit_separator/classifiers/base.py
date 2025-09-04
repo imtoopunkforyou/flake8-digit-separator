@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import TypeAlias, TypeVar
+from typing import TypeAlias
 
 from flake8_digit_separator.classifiers.types import TokenLikeStr
 from flake8_digit_separator.fds_numbers.fds_numbers import (
@@ -12,9 +12,6 @@ from flake8_digit_separator.fds_numbers.fds_numbers import (
     ScientificNumber,
 )
 
-SelfClassifier = TypeVar('SelfClassifier', bound='Classifier')
-SelfBaseClassifier = TypeVar('SelfBaseClassifier', bound='BaseClassifier')
-
 LowerTokenLikeStr: TypeAlias = str
 FDSNumbersWithPrefixAlias: TypeAlias = OctalNumber | HexNumber | BinaryNumber
 FDSNumbersUnsupportedAlias: TypeAlias = ScientificNumber | ComplexNumber
@@ -26,7 +23,7 @@ class Classifier(ABC):
 
     @property
     @abstractmethod
-    def token(self: SelfClassifier) -> TokenLikeStr:
+    def token(self) -> TokenLikeStr:
         """Token string from `tokenize.TokenInfo` object.
 
         :return: Token like string.
@@ -35,7 +32,7 @@ class Classifier(ABC):
 
     @property
     @abstractmethod
-    def token_lower(self: SelfClassifier) -> LowerTokenLikeStr:
+    def token_lower(self) -> LowerTokenLikeStr:
         """Token string from `tokenize.TokenInfo` object in lower case.
 
         :return: Token like string in lower case.
@@ -43,7 +40,7 @@ class Classifier(ABC):
         """
 
     @abstractmethod
-    def classify(self: SelfClassifier) -> FDSNumbersAlias | None:
+    def classify(self) -> FDSNumbersAlias | None:
         """Determines what specific number the token refers to.
 
         :return: Object of a specific number.

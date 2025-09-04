@@ -1,10 +1,8 @@
-from typing import TypeVar, final
+from typing import final
 
 from flake8_digit_separator.fds_numbers.fds_numbers import IntNumber
 from flake8_digit_separator.rules.rules import IntFDSRules
 from flake8_digit_separator.validators.base import BaseValidator
-
-SelfIntValidator = TypeVar('SelfIntValidator', bound='IntValidator')
 
 
 @final

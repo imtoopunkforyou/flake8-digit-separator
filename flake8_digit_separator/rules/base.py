@@ -1,9 +1,7 @@
 import enum
-from typing import TypeAlias, TypeVar
+from typing import TypeAlias
 
 NumberWithSeparators: TypeAlias = str
-
-SelfFDSRules = TypeVar('SelfFDSRules', bound='FDSRules')
 
 
 class FDSRules(enum.Enum):

@@ -1,11 +1,9 @@
-from typing import TypeVar, final
+from typing import final
 
 from flake8_digit_separator.classifiers.base import BaseClassifier
 from flake8_digit_separator.classifiers.types import TokenLikeStr
 from flake8_digit_separator.fds_numbers.enums import NumberPrefix
 from flake8_digit_separator.fds_numbers.fds_numbers import BinaryNumber
-
-SelfBinaryClassifier = TypeVar('SelfBinaryClassifier', bound='BinaryClassifier')
 
 
 @final

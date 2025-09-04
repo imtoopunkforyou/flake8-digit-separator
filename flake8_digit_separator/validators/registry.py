@@ -1,4 +1,4 @@
-from typing import ClassVar, TypeVar, final
+from typing import ClassVar, final
 
 from flake8_digit_separator.fds_numbers.fds_numbers import (
     BinaryNumber,
@@ -14,8 +14,6 @@ from flake8_digit_separator.validators.validator_float import FloatValidator
 from flake8_digit_separator.validators.validator_hex import HexValidator
 from flake8_digit_separator.validators.validator_int import IntValidator
 from flake8_digit_separator.validators.validator_octal import OctalValidator
-
-SelfValidatorRegistry = TypeVar('SelfValidatorRegistry', bound='ValidatorRegistry')
 
 
 @final

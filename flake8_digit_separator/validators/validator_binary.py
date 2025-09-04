@@ -1,10 +1,8 @@
-from typing import TypeVar, final
+from typing import final
 
 from flake8_digit_separator.fds_numbers.fds_numbers import BinaryNumber
 from flake8_digit_separator.rules.rules import BinaryFDSRules
 from flake8_digit_separator.validators.base import BaseValidator
-
-SelfBinaryValidator = TypeVar('SelfBinaryValidator', bound='BinaryValidator')
 
 
 @final

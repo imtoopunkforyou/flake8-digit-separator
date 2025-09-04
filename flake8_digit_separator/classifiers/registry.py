@@ -1,4 +1,4 @@
-from typing import TypeAlias, TypeVar, final
+from typing import TypeAlias, final
 
 from flake8_digit_separator.classifiers.classifier_binary import (
     BinaryClassifier,
@@ -13,8 +13,6 @@ from flake8_digit_separator.classifiers.classifier_octal import OctalClassifier
 from flake8_digit_separator.classifiers.classifier_scientific import (
     ScientifiClassifier,
 )
-
-SelfClassifierRegistry = TypeVar('SelfClassifierRegistry', bound='ClassifierRegistry')
 
 ClassifiersWithPrefixAlias: TypeAlias = OctalClassifier | HexClassifier | BinaryClassifier
 ClassifiersWithOutPrefixAlias: TypeAlias = IntClassifier | FloatClassifier

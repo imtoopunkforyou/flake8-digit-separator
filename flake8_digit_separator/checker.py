@@ -1,7 +1,6 @@
 import ast
 import tokenize
 from collections.abc import Iterator
-from typing import TypeVar
 
 from flake8_digit_separator import __version__ as version
 from flake8_digit_separator.classifiers.registry import ClassifierRegistry
@@ -9,8 +8,6 @@ from flake8_digit_separator.error import Error
 from flake8_digit_separator.fds_numbers.types import FDSNumbersAlias
 from flake8_digit_separator.types import ErrorMessage
 from flake8_digit_separator.validators.registry import ValidatorRegistry
-
-SelfChecker = TypeVar('SelfChecker', bound='Checker')
 
 
 class Checker:

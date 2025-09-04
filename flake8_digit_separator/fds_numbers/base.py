@@ -1,13 +1,11 @@
 from dataclasses import dataclass
-from typing import TypeAlias, TypeVar
+from typing import TypeAlias
 
 from flake8_digit_separator.fds_numbers.enums import (
     NumberDelimiter,
     NumberPrefix,
     NumeralSystem,
 )
-
-SelfFDSNumber = TypeVar('SelfFDSNumber', bound='FDSNumber')
 
 CleanedToken: TypeAlias = str
 NumberTokenLikeStr: TypeAlias = str

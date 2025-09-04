@@ -1,6 +1,5 @@
 import re
 from abc import ABC, abstractmethod
-from typing import TypeVar
 
 from flake8_digit_separator.fds_numbers.base import (
     FDSNumber,
@@ -8,16 +7,13 @@ from flake8_digit_separator.fds_numbers.base import (
     NumberWithPrefix,
 )
 
-SelfValidator = TypeVar('SelfValidator', bound='Validator')
-SelfBaseValidator = TypeVar('SelfBaseValidator', bound='BaseValidator')
-
 
 class Validator(ABC):
     """Abstract validator."""
 
     @property
     @abstractmethod
-    def number(self: SelfValidator) -> FDSNumber | NumberWithDelimiter | NumberWithPrefix:
+    def number(self) -> FDSNumber | NumberWithDelimiter | NumberWithPrefix:
         """Number object obtained from classifier.
 
         :return: FDSNumber obj.
@@ -26,7 +22,7 @@ class Validator(ABC):
 
     @property
     @abstractmethod
-    def pattern(self: SelfValidator) -> str:
+    def pattern(self) -> str:
         """The regular expression that will be validated.
 
         :return: Regular expression.
@@ -34,7 +30,7 @@ class Validator(ABC):
         """
 
     @abstractmethod
-    def validate(self: SelfValidator) -> bool:
+    def validate(self) -> bool:
         """Validation logic.
 
         :return: `True` if validation is success. Otherwise `False`.
@@ -43,7 +39,7 @@ class Validator(ABC):
 
     @property
     @abstractmethod
-    def error_message(self: SelfValidator) -> str:
+    def error_message(self) -> str:
         """The rule that the validator checked.
 
         :return: FDS rule.
