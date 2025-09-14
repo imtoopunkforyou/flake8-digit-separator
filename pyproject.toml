@@ -62,7 +62,6 @@ ruff = ">=0.12.4,<0.14.0"
 [tool.poetry.group.tests.dependencies]
 pytest = "^8.3.5"
 pytest-cov = ">=6.1.1,<8.0.0"
-coverage-badge = "^1.1.2"
 
 [tool.poetry.plugins."flake8.extension"]
 FDS = "flake8_digit_separator.checker:Checker"
