@@ -1,5 +1,5 @@
 # flake8-digit-separator
-[![coverage](https://raw.githubusercontent.com/imtoopunkforyou/flake8-digit-separator/refs/heads/main/.github/badge/coverage.svg)](https://github.com/pytest-dev/pytest-cov)
+[![codecov](https://codecov.io/github/imtoopunkforyou/flake8-digit-separator/graph/badge.svg?token=P3NCBI0JTU)](https://codecov.io/github/imtoopunkforyou/flake8-digit-separator)
 [![tests](https://github.com/imtoopunkforyou/flake8-digit-separator/actions/workflows/tests.yaml/badge.svg)](https://github.com/imtoopunkforyou/flake8-digit-separator/actions/workflows/tests.yaml)
 [![pypi package version](https://img.shields.io/pypi/v/flake8-digit-separator.svg)](https://pypi.org/project/flake8-digit-separator)
 [![pypi downloads](https://img.shields.io/pypi/dm/flake8-digit-separator.svg)](https://pypi.org/project/flake8-digit-separator)
