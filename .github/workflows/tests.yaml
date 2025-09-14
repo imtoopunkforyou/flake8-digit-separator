@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 jobs:
-  tests-collect-and-run:
+  tests-run:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
