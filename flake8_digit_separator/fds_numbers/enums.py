@@ -13,7 +13,7 @@ class NumeralSystem(enum.Enum):
 
 @enum.unique
 class NumberPrefix(enum.Enum):
-    """Supported number prefixs."""
+    """Supported number prefix."""
 
     BINARY = '0b_'
     OCTAL = '0o_'
@@ -33,6 +33,6 @@ class NumberPrefix(enum.Enum):
 
 @enum.unique
 class NumberDelimiter(enum.Enum):
-    """Supported number delimeters."""
+    """Supported number delimiters."""
 
     FLOAT = '.'

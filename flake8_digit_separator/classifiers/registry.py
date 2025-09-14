@@ -22,7 +22,7 @@ ClassifiersAlias: TypeAlias = ClassifiersUnsupported | ClassifiersWithOutPrefixA
 
 @final
 class ClassifierRegistry:
-    """Classifier Registrator.
+    """Classifier registrar.
 
     Classification of numbers requires a deterministic order of classifiers.
     """

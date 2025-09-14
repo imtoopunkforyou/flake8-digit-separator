@@ -18,7 +18,7 @@ from flake8_digit_separator.validators.validator_octal import OctalValidator
 
 @final
 class ValidatorRegistry:
-    """Validator Registrator.
+    """Validator registrar.
 
     Matches validators and numbers.
     """
