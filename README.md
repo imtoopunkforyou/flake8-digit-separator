@@ -50,7 +50,7 @@ flake8 ./ --select FDS
 ## Configuration Options
 
 #### `--fds-exclude`
-Exclude specific <u>integer</u> numbers from digit separator validation. This is useful for well-known numbers like ports or other constants where the standard formatting might not be appropriate. For example, when we write `port = 8080` or `storage = 1024`, there is no point in distorting it through `8_080` or through `1_024`.
+Exclude specific <ins>integer</ins> numbers from digit separator validation. This is useful for well-known numbers like ports or other constants where the standard formatting might not be appropriate. For example, when we write `port = 8080` or `storage = 1024`, there is no point in distorting it through `8_080` or through `1_024`.
 
 Use the option:
 ```bash
