@@ -21,10 +21,8 @@ class TestExcludeOption:
         mock_parser.add_option.assert_called_once()
         call_args = mock_parser.add_option.call_args
 
-        # Check positional arguments
         assert '--fds-exclude' in call_args[0]
 
-        # Check keyword arguments
         assert call_args[1]['action'] == 'store'
         assert call_args[1]['type'] is str
         assert call_args[1]['default'] == ''
@@ -70,7 +68,6 @@ class TestExcludeOption:
         """Test that excluded integers are properly identified."""
         Checker.excluded_numbers = {8080, 443, 80}
 
-        # Mock a number object
         mock_number = Mock()
         mock_number.token = '8080'
 
@@ -83,7 +80,6 @@ class TestExcludeOption:
         """Test that non-excluded integers are not excluded."""
         Checker.excluded_numbers = {8080, 443, 80}
 
-        # Mock a number object
         mock_number = Mock()
         mock_number.token = '3000'
 
@@ -96,7 +92,6 @@ class TestExcludeOption:
         """Test that excluded whole number floats are properly identified."""
         Checker.excluded_numbers = {8080, 443, 80}
 
-        # Mock a number object
         mock_number = Mock()
         mock_number.token = '8080.0'
 
@@ -109,7 +104,6 @@ class TestExcludeOption:
         """Test that non-whole floats are not excluded even if integer part matches."""
         Checker.excluded_numbers = {8080, 443, 80}
 
-        # Mock a number object
         mock_number = Mock()
         mock_number.token = '8080.5'
 
@@ -122,7 +116,6 @@ class TestExcludeOption:
         """Test that invalid tokens are not excluded."""
         Checker.excluded_numbers = {8080, 443, 80}
 
-        # Mock a number object with invalid token
         mock_number = Mock()
         mock_number.token = 'invalid'
 
@@ -133,7 +126,6 @@ class TestExcludeOption:
 
     def test_should_exclude_number_without_excluded_numbers_attribute(self):
         """Test behavior when excluded_numbers attribute doesn't exist."""
-        # Remove the excluded_numbers attribute
         if hasattr(Checker, 'excluded_numbers'):
             delattr(Checker, 'excluded_numbers')
 
@@ -149,7 +141,6 @@ class TestExcludeOption:
         """Test behavior when number object doesn't have token attribute."""
         Checker.excluded_numbers = {8080, 443, 80}
 
-        # Mock a number object without token attribute
         mock_number = Mock()
         del mock_number.token
 
@@ -162,12 +153,10 @@ class TestExcludeOption:
         """Test that _process_number_token excludes numbers in the exclude list."""
         Checker.excluded_numbers = {8080, 443, 80}
 
-        # Create a mock token
         mock_token = Mock()
         mock_token.string = '8080'
         mock_token.start = (1, 0)
 
-        # Mock the _classify method to return a number
         with patch.object(Checker, '_classify') as mock_classify:
             mock_number = Mock()
             mock_number.is_supported = True
@@ -177,19 +166,16 @@ class TestExcludeOption:
             checker = Checker(ast.parse(''), [])
             result = checker._process_number_token(mock_token)
 
-            # Should return None because the number is excluded
             assert result is None
 
     def test_process_number_token_validates_non_excluded_numbers(self):
         """Test that _process_number_token validates numbers not in the exclude list."""
         Checker.excluded_numbers = {8080, 443, 80}
 
-        # Create a mock token
         mock_token = Mock()
         mock_token.string = '3000'
         mock_token.start = (1, 0)
 
-        # Mock the _classify method to return a number
         with (
             patch.object(Checker, '_classify') as mock_classify,
             patch('flake8_digit_separator.checker.ValidatorRegistry.get_validator') as mock_get_validator,
@@ -199,7 +185,6 @@ class TestExcludeOption:
             mock_number.token = '3000'
             mock_classify.return_value = mock_number
 
-            # Mock validator that fails validation
             mock_validator = Mock()
             mock_validator.validate.return_value = False
             mock_validator.error_message = 'FDS100: Invalid number format'
@@ -208,7 +193,6 @@ class TestExcludeOption:
             checker = Checker(ast.parse(''), [])
             result = checker._process_number_token(mock_token)
 
-            # Should return an error because the number is not excluded and validation fails
             assert result is not None
             assert result.message == 'FDS100: Invalid number format'
 
@@ -218,7 +202,6 @@ class TestExcludeOptionIntegration:
 
     def test_exclude_option_via_command_line(self):
         """Test that the exclude option works via command line."""
-        # Create a temporary Python file with numbers that should be excluded
         test_code = """
         port = 8080
         timeout = 3000
@@ -230,7 +213,6 @@ class TestExcludeOptionIntegration:
             temp_file = f.name
 
         try:
-            # Run flake8 with exclude option
             result = subprocess.run(
                 [
                     'flake8',
@@ -246,31 +228,23 @@ class TestExcludeOptionIntegration:
                 text=True,
             )
 
-            # Should only report error for 100 (not excluded)
-            # and 8080, 3000 should be excluded
             output_lines = result.stdout.strip().split('\n') if result.stdout.strip() else []
 
-            # Count FDS errors
             fds_errors = [line for line in output_lines if 'FDS' in line]
 
-            # Should have some errors but not for 8080 and 3000
-            # The exact number depends on the validation rules
             assert len(fds_errors) >= 0  # At least some validation should occur
 
         finally:
-            # Clean up
             Path(temp_file).unlink()
 
     def test_exclude_option_via_config_file(self):
         """Test that the exclude option works via config file."""
-        # Create a temporary Python file with numbers that should be excluded
         test_code = """
         port = 8080
         timeout = 3000
         max_connections = 100
         """
 
-        # Create a temporary config file
         config_content = """
         [flake8]
         fds-exclude = 8080,3000
@@ -285,7 +259,6 @@ class TestExcludeOptionIntegration:
             config_file = f.name
 
         try:
-            # Run flake8 with config file
             result = subprocess.run(
                 [
                     'flake8',
@@ -301,18 +274,12 @@ class TestExcludeOptionIntegration:
                 text=True,
             )
 
-            # Should only report error for 100 (not excluded)
-            # and 8080, 3000 should be excluded
             output_lines = result.stdout.strip().split('\n') if result.stdout.strip() else []
 
-            # Count FDS errors
             fds_errors = [line for line in output_lines if 'FDS' in line]
 
-            # Should have some errors but not for 8080 and 3000
-            # The exact number depends on the validation rules
             assert len(fds_errors) >= 0  # At least some validation should occur
 
         finally:
-            # Clean up
             Path(temp_file).unlink()
             Path(config_file).unlink()

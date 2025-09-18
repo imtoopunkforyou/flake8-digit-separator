@@ -48,6 +48,7 @@ external = [ "WPS" ]
     "S105",
     "S603",
     "S607",
+    "S106",
 ] 
 
 [format]

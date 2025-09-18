@@ -17,15 +17,30 @@ class TestBinaryValidator:
 
     def test_validate_returns_false_for_invalid_binary_int(self):
         """Test that validate returns False when validate_token_as_int fails."""
-        # Create a binary number with invalid token
         binary_number = BinaryNumber(
-            token='0binvalid',  # Invalid binary token that can't be converted to int  # noqa: S106
+            token='0binvalid',  # Invalid binary token that can't be converted to int
         )
 
         validator = BinaryValidator(binary_number)
 
-        # Should return False when validate_token_as_int fails
         assert validator.validate() is False
+
+    def test_pattern_property(self):
+        """Test that pattern property returns the correct regex."""
+        binary_number = BinaryNumber(token='0b_1101_1001')
+        validator = BinaryValidator(binary_number)
+
+        expected_pattern = r'^[+-]?0[bB]_([01]{1,4}(_[01]{4})*)$'
+        assert validator.pattern == expected_pattern
+
+    def test_error_message_property(self):
+        """Test that error_message property returns the correct message."""
+        binary_number = BinaryNumber(token='0b_1101_1001')
+        validator = BinaryValidator(binary_number)
+
+        error_message = validator.error_message
+        assert 'FDS300' in error_message
+        assert 'Group by 4s from right after prefix' in error_message
 
 
 class TestFloatValidator:
@@ -33,15 +48,30 @@ class TestFloatValidator:
 
     def test_validate_returns_false_for_invalid_float(self):
         """Test that validate returns False when validate_token_as_float fails."""
-        # Create a float number with invalid token
         float_number = FloatNumber(
-            token='invalid_float',  # Invalid float token that can't be converted to float  # noqa: S106
+            token='invalid_float',  # Invalid float token that can't be converted to float
         )
 
         validator = FloatValidator(float_number)
 
-        # Should return False when validate_token_as_float fails
         assert validator.validate() is False
+
+    def test_pattern_property(self):
+        """Test that pattern property returns the correct regex."""
+        float_number = FloatNumber(token='10_000.1_234')
+        validator = FloatValidator(float_number)
+
+        expected_pattern = r'^[+-]?(?:(?!0_)\d{1,3}(?:_\d{3})*\.\d{1,3}(?:_\d{3})*|\.\d{1,3}(?:_\d{3})*)$'
+        assert validator.pattern == expected_pattern
+
+    def test_error_message_property(self):
+        """Test that error_message property returns the correct message."""
+        float_number = FloatNumber(token='10_000.1_234')
+        validator = FloatValidator(float_number)
+
+        error_message = validator.error_message
+        assert 'FDS200' in error_message
+        assert 'Group by 3s from right' in error_message
 
 
 class TestHexValidator:
@@ -49,15 +79,30 @@ class TestHexValidator:
 
     def test_validate_returns_false_for_invalid_hex_int(self):
         """Test that validate returns False when validate_token_as_int fails."""
-        # Create a hex number with invalid token
         hex_number = HexNumber(
-            token='0xinvalid',  # Invalid hex token that can't be converted to int  # noqa: S106
+            token='0xinvalid',  # Invalid hex token that can't be converted to int
         )
 
         validator = HexValidator(hex_number)
 
-        # Should return False when validate_token_as_int fails
         assert validator.validate() is False
+
+    def test_pattern_property(self):
+        """Test that pattern property returns the correct regex."""
+        hex_number = HexNumber(token='0x_CAFE_F00D')
+        validator = HexValidator(hex_number)
+
+        expected_pattern = r'^[+-]?0[xX]_[0-9a-fA-F]{1,4}(?:_[0-9a-fA-F]{4})*$'
+        assert validator.pattern == expected_pattern
+
+    def test_error_message_property(self):
+        """Test that error_message property returns the correct message."""
+        hex_number = HexNumber(token='0x_CAFE_F00D')
+        validator = HexValidator(hex_number)
+
+        error_message = validator.error_message
+        assert 'FDS500' in error_message
+        assert 'Group by 4s from right after prefix' in error_message
 
 
 class TestIntValidator:
@@ -65,15 +110,30 @@ class TestIntValidator:
 
     def test_validate_returns_false_for_invalid_int(self):
         """Test that validate returns False when validate_token_as_int fails."""
-        # Create an int number with invalid token
         int_number = IntNumber(
-            token='invalid_int',  # Invalid int token that can't be converted to int  # noqa: S106
+            token='invalid_int',  # Invalid int token that can't be converted to int
         )
 
         validator = IntValidator(int_number)
 
-        # Should return False when validate_token_as_int fails
         assert validator.validate() is False
+
+    def test_pattern_property(self):
+        """Test that pattern property returns the correct regex."""
+        int_number = IntNumber(token='10_000')
+        validator = IntValidator(int_number)
+
+        expected_pattern = r'^[+-]?(?!0_)\d{1,3}(?:_\d{3})*$'
+        assert validator.pattern == expected_pattern
+
+    def test_error_message_property(self):
+        """Test that error_message property returns the correct message."""
+        int_number = IntNumber(token='10_000')
+        validator = IntValidator(int_number)
+
+        error_message = validator.error_message
+        assert 'FDS100' in error_message
+        assert 'Group by 3s from right' in error_message
 
 
 class TestOctalValidator:
@@ -81,12 +141,27 @@ class TestOctalValidator:
 
     def test_validate_returns_false_for_invalid_octal_int(self):
         """Test that validate returns False when validate_token_as_int fails."""
-        # Create an octal number with invalid token
         octal_number = OctalNumber(
-            token='0oinvalid',  # Invalid octal token that can't be converted to int  # noqa: S106
+            token='0oinvalid',  # Invalid octal token that can't be converted to int
         )
 
         validator = OctalValidator(octal_number)
 
-        # Should return False when validate_token_as_int fails
         assert validator.validate() is False
+
+    def test_pattern_property(self):
+        """Test that pattern property returns the correct regex."""
+        octal_number = OctalNumber(token='0o_12_134_155')
+        validator = OctalValidator(octal_number)
+
+        expected_pattern = r'^[+-]?0[oO]_[0-7]{1,3}(_[0-7]{3})*$'
+        assert validator.pattern == expected_pattern
+
+    def test_error_message_property(self):
+        """Test that error_message property returns the correct message."""
+        octal_number = OctalNumber(token='0o_12_134_155')
+        validator = OctalValidator(octal_number)
+
+        error_message = validator.error_message
+        assert 'FDS400' in error_message
+        assert 'Group by 3s from right after prefix' in error_message
