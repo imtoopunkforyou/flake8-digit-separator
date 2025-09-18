@@ -46,7 +46,7 @@ def fds500_wrong_count():
 @pytest.fixture
 def flake8_stdout():
     def _flake8_stdout(file_path):
-        process = subprocess.Popen(  # noqa: S603
+        process = subprocess.Popen(
             (
                 'flake8',
                 '--isolated',
