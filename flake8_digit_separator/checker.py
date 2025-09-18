@@ -62,6 +62,7 @@ class Checker:
             action='store',
             type=str,
             default='',
+            parse_from_config=True,
             help='Comma-separated list of integer numbers to exclude from digit separator validation (e.g. 8080, 1024)',
         )
 

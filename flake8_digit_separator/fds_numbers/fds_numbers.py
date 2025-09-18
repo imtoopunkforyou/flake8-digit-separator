@@ -70,3 +70,6 @@ class ScientificNumber(FDSNumber):
 
     numeral_system: NumeralSystem = NumeralSystem.FLOAT
     is_supported: bool = False
+
+port = 3333, 8888
+9999
