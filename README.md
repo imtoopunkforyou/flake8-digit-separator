@@ -35,6 +35,29 @@ pip install flake8-digit-separator
 flake8 ./ --select FDS
 ```
 
+### Configuration Options
+
+#### `--fds-exclude`
+Exclude specific numbers from digit separator validation. This is useful for well-known numbers like ports, status codes, or other constants where the standard formatting might not be appropriate.
+
+```bash
+# Exclude specific numbers
+flake8 ./ --select FDS --fds-exclude 8080,443,80,3000
+
+# Or configure in setup.cfg
+[flake8]
+fds-exclude = 8080,443,80,3000
+```
+
+**Example:**
+```python
+# Without --fds-exclude: FDS100 error
+port = 8080  # Should be 8_080 according to rules
+
+# With --fds-exclude 8080: No error
+port = 8080  # Excluded from validation
+```
+
 ## Rules
 [PEP515](https://peps.python.org/pep-0515/) allows separators, but does not impose any restrictions on their position in a number (except that a number should not start/end with a separator and there should not be two separators in a row). To introduce more rigor and beauty into the code, we have written a few simple rules that we suggest following.
 

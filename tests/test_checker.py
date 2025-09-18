@@ -99,7 +99,7 @@ class TestChecker:
         # Should return the classified number (not None)
         assert result is not None
         assert hasattr(result, 'token')
-        assert result.token == '123'  # noqa: S105
+        assert result.token == '123'
 
     @patch('flake8_digit_separator.checker.Checker._classify')
     def test_process_number_token_returns_none_when_classify_returns_none(self, mock_classify):
