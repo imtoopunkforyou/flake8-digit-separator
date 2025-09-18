@@ -52,10 +52,12 @@ flake8 ./ --select FDS
 #### `--fds-exclude`
 Exclude specific <u>integer</u> numbers from digit separator validation. This is useful for well-known numbers like ports or other constants where the standard formatting might not be appropriate. For example, when we write `port = 8080` or `storage = 1024`, there is no point in distorting it through `8_080` or through `1_024`.
 
+Use the option:
 ```bash
 flake8 ./ --select FDS --fds-exclude=8080,1024,6379
-
-# Or configure in setup.cfg
+```
+Or configure in [setup.cfg](https://flake8.pycqa.org/en/stable/user/configuration.html):
+```ini
 [flake8]
 fds-exclude = 8080,1024,6379
 ```
