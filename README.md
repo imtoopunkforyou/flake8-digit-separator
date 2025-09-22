@@ -2,6 +2,7 @@
 [![codecov](https://codecov.io/github/imtoopunkforyou/flake8-digit-separator/graph/badge.svg?token=P3NCBI0JTU)](https://codecov.io/github/imtoopunkforyou/flake8-digit-separator)
 [![tests](https://github.com/imtoopunkforyou/flake8-digit-separator/actions/workflows/tests.yaml/badge.svg)](https://github.com/imtoopunkforyou/flake8-digit-separator/actions/workflows/tests.yaml)
 [![pypi package version](https://img.shields.io/pypi/v/flake8-digit-separator.svg)](https://pypi.org/project/flake8-digit-separator)
+[![status](https://img.shields.io/pypi/status/flake8-digit-separator.svg)](https://pypi.org/project/flake8-digit-separator)
 [![pypi downloads](https://img.shields.io/pypi/dm/flake8-digit-separator.svg)](https://pypi.org/project/flake8-digit-separator)
 [![supported python versions](https://img.shields.io/pypi/pyversions/flake8-digit-separator.svg)](https://pypi.org/project/flake8-digit-separator)
 [![wemake-python-styleguide](https://img.shields.io/badge/style-wemake-000000.svg)](https://github.com/wemake-services/wemake-python-styleguide)
