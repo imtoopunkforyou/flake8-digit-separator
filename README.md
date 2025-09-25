@@ -6,7 +6,8 @@
 [![pypi downloads](https://img.shields.io/pypi/dm/flake8-digit-separator.svg)](https://pypi.org/project/flake8-digit-separator)
 [![supported python versions](https://img.shields.io/pypi/pyversions/flake8-digit-separator.svg)](https://pypi.org/project/flake8-digit-separator)
 [![wemake-python-styleguide](https://img.shields.io/badge/style-wemake-000000.svg)](https://github.com/wemake-services/wemake-python-styleguide)
-[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![mypy](https://www.mypy-lang.org/static/mypy_badge.svg)](https://mypy-lang.org/)
+[![ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![license](https://img.shields.io/pypi/l/flake8-digit-separator.svg)](https://github.com/imtoopunkforyou/flake8-digit-separator/blob/main/LICENSE)  
 
 
