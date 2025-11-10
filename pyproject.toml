@@ -65,7 +65,7 @@ types-flake8 = "^7.3.0.20250622"
 
 
 [tool.poetry.group.tests.dependencies]
-pytest = "^8.3.5"
+pytest = ">=8.3.5,<10.0.0"
 pytest-cov = ">=6.1.1,<8.0.0"
 
 [tool.poetry.plugins."flake8.extension"]
