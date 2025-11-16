@@ -1,4 +1,6 @@
 # flake8-digit-separator
+
+[![Poetry](https://img.shields.io/endpoint?url=https://python-poetry.org/badge/v0.json)](https://python-poetry.org/)
 [![codecov](https://codecov.io/github/imtoopunkforyou/flake8-digit-separator/graph/badge.svg?token=P3NCBI0JTU)](https://codecov.io/github/imtoopunkforyou/flake8-digit-separator)
 [![tests](https://github.com/imtoopunkforyou/flake8-digit-separator/actions/workflows/tests.yaml/badge.svg)](https://github.com/imtoopunkforyou/flake8-digit-separator/actions/workflows/tests.yaml)
 [![pypi package version](https://img.shields.io/pypi/v/flake8-digit-separator.svg)](https://pypi.org/project/flake8-digit-separator)
