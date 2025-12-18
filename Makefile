@@ -7,15 +7,16 @@ make:
 # === Dev ===
 .PHONY: lint
 lint:
-	poetry run ruff check ./flake8_digit_separator ./tests \
-	&& poetry run ruff format ./flake8_digit_separator ./tests \
+	poetry run ruff format ./flake8_digit_separator ./tests \
+	&& poetry run ruff check ./flake8_digit_separator ./tests \
 	&& poetry run flake8 ./flake8_digit_separator \
 	&& poetry run mypy ./flake8_digit_separator
 
 .PHONY: pre-commit
 pre-commit:
 	make lint \
-	&& make test
+	&& make test \
+	&& make spell-check
 
 .PHONY: test-collect
 test-collect:
@@ -33,9 +34,9 @@ cov-report:
 fds:
 	poetry run flake8 --select FDS ./flake8_digit_separator
 
-.PHONY: cspell
-cspell:
-	npx cspell-cli --gitignore .
+.PHONY: spell-check
+spell-check:
+	poetry run codespell flake8_digit_separator tests README.md CONTRIBUTING.md
 
 
 # === Aliases ===
