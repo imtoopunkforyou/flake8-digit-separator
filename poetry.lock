@@ -611,14 +611,14 @@ markers = {lint = "python_version == \"3.10\"", tests = "python_full_version <= 
 
 [[package]]
 name = "types-flake8"
-version = "7.3.0.20250622"
+version = "7.3.0.20260402"
 description = "Typing stubs for flake8"
 optional = false
-python-versions = ">=3.9"
+python-versions = ">=3.10"
 groups = ["lint"]
 files = [
-    {file = "types_flake8-7.3.0.20250622-py3-none-any.whl", hash = "sha256:6d5a10d3578ec78045a99b599cf91dbffc2eca7a3820df1bfc7cd959e81d4253"},
-    {file = "types_flake8-7.3.0.20250622.tar.gz", hash = "sha256:caf6d06f2e5c40495947db230f127b85b57ada61d299c6ce043cc6d68eb2c749"},
+    {file = "types_flake8-7.3.0.20260402-py3-none-any.whl", hash = "sha256:f1594f8ebc7d4d9c6a33034dfe63ac43ec73b4888fb0a73add9a02d4dc90259a"},
+    {file = "types_flake8-7.3.0.20260402.tar.gz", hash = "sha256:f85e2348483cb0de08bb13e5fd65ae1008f3fe9075116d1b09107c46c7ad8675"},
 ]
 
 [package.dependencies]
