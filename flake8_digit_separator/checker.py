@@ -132,4 +132,4 @@ class Checker:
             if number:
                 break
 
-        return number if number else None
+        return number or None
